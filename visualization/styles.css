@@ -1,0 +1,35 @@
+.wrapper {
+    display: flex;
+
+    height: 100%
+}
+
+#cy1 {
+    width: 400px;
+    height: 600px;
+    float: left;
+}
+
+#cy2 {
+    width: 800px;
+    height: 600px;
+    float: left;
+}
+#cy3 {
+    width: 800px;
+    height: 600px;
+    float: left;
+}
+
+#buttons {
+    display: inline-block;
+    width: 200px; /* set the width of the item */
+}
+
+#counter {
+    display: inline-block;
+}
+
+.half-screen {
+    box-sizing: border-box;
+}

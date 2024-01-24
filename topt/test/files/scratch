@@ -1,0 +1,2808 @@
+
+"""    comparisons = [('(((a,b),c),(d,((e,(((f,g),(h,(i,j))),k)),((l,(m,n)),(o,p)))));',
+                  '(((a,(b,c)),(d,e)),((((f,g),h),i),(j,((k,(l,m)),n))));'),
+                     ('(((a,b),c),(d,((e,(((f,g),(h,(i,j))),k)),((l,(m,n)),(o,p)))));',
+                      '((a,((b,(c,d)),(e,f))),((g,h),i));'), (
+                         '(((a,b),c),(d,((e,(((f,g),(h,(i,j))),k)),((l,(m,n)),(o,p)))));',
+                         '(((((a,b),(c,d)),((e,(f,g)),(h,(i,j)))),k),(l,(m,(n,o))));'),
+                     ('(((a,b),c),(d,((e,(((f,g),(h,(i,j))),k)),((l,(m,n)),(o,p)))));',
+                      '(((((a,b),(c,(d,e))),f),((g,h),i)),j);'), (
+                         '(((a,b),c),(d,((e,(((f,g),(h,(i,j))),k)),((l,(m,n)),(o,p)))));',
+                         '(((a,(b,(((c,d),(e,f)),(((g,h),i),j)))),(k,l)),((m,n),o));'), (
+                         '(((a,b),c),(d,((e,(((f,g),(h,(i,j))),k)),((l,(m,n)),(o,p)))));',
+                         '(((a,b),(c,d)),((e,((f,(g,(h,i))),j)),((k,l),m)));'),
+                     ('(((a,b),c),(d,((e,(((f,g),(h,(i,j))),k)),((l,(m,n)),(o,p)))));',
+                      '((((a,b),((c,((d,e),f)),g)),h),i);'),
+                     ('(((a,b),c),(d,((e,(((f,g),(h,(i,j))),k)),((l,(m,n)),(o,p)))));',
+                      '(((a,((b,c),d)),((e,f),g)),(((h,i),j),k));'), (
+                         '(((a,b),c),(d,((e,(((f,g),(h,(i,j))),k)),((l,(m,n)),(o,p)))));',
+                         '(((((a,b),(c,d)),(((e,f),(g,(h,i))),j)),((k,l),m)),(n,(o,p)));'), (
+                         '(((a,b),c),(d,((e,(((f,g),(h,(i,j))),k)),((l,(m,n)),(o,p)))));',
+                         '(((a,(b,c)),(((d,e),f),(g,((h,i),j)))),(k,l));')]"""
+    #comparisons = [('(a,((b,c),(((d,e),f),((g,h),i))));', '((a,b),(((c,d),(e,f)),(g,(h,i))));'), ('(a,((b,c),(((d,e),f),((g,h),i))));', '(((a,b),((c,d),(e,f))),(g,(h,i)));'), ('(a,((b,c),(((d,e),f),((g,h),i))));', '(((a,b),(c,d)),(e,((f,g),h)));'), ('(a,((b,c),(((d,e),f),((g,h),i))));', '(((a,b),(((c,d),e),f)),(g,(h,i)));'), ('(a,((b,c),(((d,e),f),((g,h),i))));', '(((a,(b,c)),d),(e,((f,g),(h,i))));'), ('(a,((b,c),(((d,e),f),((g,h),i))));', '(((a,b),(c,d)),(e,((f,g),h)));'), ('(a,((b,c),(((d,e),f),((g,h),i))));', '(((a,b),c),(d,((e,(f,g)),h)));'), ('(a,((b,c),(((d,e),f),((g,h),i))));', '(a,(((b,(c,d)),(e,(f,g))),h));')]
+
+
+/home/jax/files/code/topt/venv/bin/python /home/jax/files/code/topt/manage.py runserver 8000
+Performing system checks...
+
+Watching for file changes with StatReloader
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+April 13, 2023 - 11:25:09
+Django version 4.2, using settings 'topt.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+Solving ILP:
+tree_decisions:
+MAXIMIZE
+1*u_0_12 + 1*u_0_13 + 1*u_0_9 + 1*u_0_b + 1*u_0_e + 1*u_0_f + 1*u_11_0 + 1*u_11_1 + 1*u_11_dd_22 + 1*u_11_dd_j + 1*u_11_i + 1*u_12_0 + 1*u_12_1 + 1*u_12_b + 1*u_12_c + 1*u_12_i + 1*u_13_8 + 1*u_13_d + 1*u_13_e + 1*u_13_h + 1*u_16_23 + 1*u_16_9 + 1*u_18_0 + 1*u_18_22 + 1*u_18_22_dd + 1*u_18_28 + 1*u_18_28_dd + 1*u_18_d + 1*u_18_k + 1*u_18_m + 1*u_1_12 + 1*u_1_6_dd7 + 1*u_1_9_dd7 + 1*u_1_d + 1*u_1_dd7_b + 1*u_1_e + 1*u_22_11 + 1*u_22_12 + 1*u_23_0 + 1*u_23_1 + 1*u_23_11 + 1*u_23_16 + 1*u_23_28_dd + 1*u_23_j + 1*u_23_m + 1*u_25_0 + 1*u_25_18 + 1*u_28_n + 1*u_2_12 + 1*u_2_d + 1*u_2_i + 1*u_6_b + 1*u_6_c + 1*u_6_dd7_11_dd + 1*u_6_dd7_c + 1*u_6_dd7_f + 1*u_8_0 + 1*u_8_j + 1*u_9_13 + 1*u_9_dd7_0 + 1*u_9_dd7_d + 1*u_9_f + 1*u_9_i + 1*u_a_0 + 1*u_a_13 + 1*u_a_6 + 1*u_a_9 + 1*u_a_9_dd7 + 1*u_a_ROOT_ + 1*u_a_d + 1*u_a_e + 1*u_b_6_dd7 + 1*u_c_9_dd7 + 1*u_c_b + 1*u_c_d + 1*u_d_13_dd + 1*u_d_b + 1*u_d_c + 1*u_d_e + 1*u_e_13 + 1*u_e_d + 1*u_e_f + 1*u_f_b + 1*u_f_c + 1*u_f_d + 1*u_f_e + 1*u_g_h + 1*u_h_g + 1*u_h_i + 1*u_j_11 + 1*u_j_12 + 1*u_j_23 + 1*u_j_23_dd + 1*u_j_6 + 1*u_j_k + 1*u_k_16 + 1*u_k_23 + 1*u_k_j + 1*u_k_l + 1*u_l_18 + 1*u_l_j + 1*u_l_k + 1*u_l_m + 1*u_m_0 + 1*u_m_1 + 1*u_n_28 + 1*u_n_o + 1*u_o_25 + 1*u_o_n + 1*u_p_n + 0
+SUBJECT TO
+_C1: b_p0_tree.0.1 + b_p0_tree.0.2 = 1
+
+_C2: 99999 b_p0_tree.0.1 + z_p0_tree.0 <= 99999
+
+_C3: - 99999 b_p0_tree.0.2 + z_p0_tree.0 >= -99993
+
+_C4: 99999 b_p0_tree.0.2 + z_p0_tree.0 <= 100005
+
+_C5: source.12_target.c_move.0_tree.0 + source.18_target.k_move.0_tree.0
+ + source.1_dd7_target.b_move.0_tree.0 + source.25_target.0_move.0_tree.0
+ + source.d_target.13_dd_move.0_tree.0 + source.e_target.f_move.0_tree.0
+ - z_p0_tree.0 = 0
+
+_C6: b_p1_tree.0.1 + b_p1_tree.0.2 = 1
+
+_C7: 99999 b_p1_tree.0.1 + z_p1_tree.0 <= 99999
+
+_C8: - 99999 b_p1_tree.0.2 + z_p1_tree.0 >= -99993
+
+_C9: 99999 b_p1_tree.0.2 + z_p1_tree.0 <= 100005
+
+_C10: source.12_target.c_move.1_tree.0 + source.18_target.k_move.1_tree.0
+ + source.1_dd7_target.b_move.1_tree.0 + source.d_target.13_dd_move.1_tree.0
+ + source.e_target.f_move.1_tree.0 + source.m_target.0_move.1_tree.0
+ - z_p1_tree.0 = 0
+
+_C11: z_p0_tree.0 + z_p1_tree.0 = 6
+
+_C12: b_p0_tree.1.1 + b_p0_tree.1.2 = 1
+
+_C13: 99999 b_p0_tree.1.1 + z_p0_tree.1 <= 99999
+
+_C14: - 99999 b_p0_tree.1.2 + z_p0_tree.1 >= -99993
+
+_C15: 99999 b_p0_tree.1.2 + z_p0_tree.1 <= 100005
+
+_C16: source.11_target.1_move.0_tree.1 + source.23_target.1_move.0_tree.1
+ + source.6_target.c_move.0_tree.1 + source.f_target.c_move.0_tree.1
+ + source.j_target.k_move.0_tree.1 + source.k_target.16_move.0_tree.1
+ - z_p0_tree.1 = 0
+
+_C17: b_p1_tree.1.1 + b_p1_tree.1.2 = 1
+
+_C18: 99999 b_p1_tree.1.1 + z_p1_tree.1 <= 99999
+
+_C19: - 99999 b_p1_tree.1.2 + z_p1_tree.1 >= -99993
+
+_C20: 99999 b_p1_tree.1.2 + z_p1_tree.1 <= 100005
+
+_C21: source.12_target.1_move.1_tree.1 + source.23_target.1_move.1_tree.1
+ + source.6_target.c_move.1_tree.1 + source.f_target.c_move.1_tree.1
+ + source.j_target.k_move.1_tree.1 + source.k_target.16_move.1_tree.1
+ - z_p1_tree.1 = 0
+
+_C22: z_p0_tree.1 + z_p1_tree.1 = 6
+
+_C23: b_p0_tree.2.1 + b_p0_tree.2.2 = 1
+
+_C24: 99999 b_p0_tree.2.1 + z_p0_tree.2 <= 99999
+
+_C25: - 99999 b_p0_tree.2.2 + z_p0_tree.2 >= -99994
+
+_C26: 99999 b_p0_tree.2.2 + z_p0_tree.2 <= 100004
+
+_C27: source.13_target.e_move.0_tree.2 + source.22_target.11_move.0_tree.2
+ + source.28_target.n_move.0_tree.2 + source.d_target.c_move.0_tree.2
+ + source.p_target.n_move.0_tree.2 - z_p0_tree.2 = 0
+
+_C28: b_p1_tree.2.1 + b_p1_tree.2.2 = 1
+
+_C29: 99999 b_p1_tree.2.1 + z_p1_tree.2 <= 99999
+
+_C30: - 99999 b_p1_tree.2.2 + z_p1_tree.2 >= -99994
+
+_C31: 99999 b_p1_tree.2.2 + z_p1_tree.2 <= 100004
+
+_C32: source.13_target.e_move.1_tree.2 + source.23_target.11_move.1_tree.2
+ + source.28_target.n_move.1_tree.2 + source.d_target.c_move.1_tree.2
+ + source.p_target.n_move.1_tree.2 - z_p1_tree.2 = 0
+
+_C33: b_p2_tree.2.1 + b_p2_tree.2.2 = 1
+
+_C34: 99999 b_p2_tree.2.1 + z_p2_tree.2 <= 99999
+
+_C35: - 99999 b_p2_tree.2.2 + z_p2_tree.2 >= -99994
+
+_C36: 99999 b_p2_tree.2.2 + z_p2_tree.2 <= 100004
+
+_C37: source.13_target.e_move.2_tree.2 + source.23_target.11_move.2_tree.2
+ + source.d_target.c_move.2_tree.2 + source.o_target.n_move.2_tree.2
+ + source.p_target.n_move.2_tree.2 - z_p2_tree.2 = 0
+
+_C38: z_p0_tree.2 + z_p1_tree.2 + z_p2_tree.2 = 5
+
+_C39: b_p0_tree.3.1 + b_p0_tree.3.2 = 1
+
+_C40: 99999 b_p0_tree.3.1 + z_p0_tree.3 <= 99999
+
+_C41: - 99999 b_p0_tree.3.2 + z_p0_tree.3 >= -99992
+
+_C42: 99999 b_p0_tree.3.2 + z_p0_tree.3 <= 100006
+
+_C43: source.18_target.22_move.0_tree.3 + source.23_target.j_move.0_tree.3
+ + source.6_dd7_target.c_move.0_tree.3 + source.a_target.0_move.0_tree.3
+ + source.e_target.d_move.0_tree.3 + source.k_target.23_move.0_tree.3
+ + source.n_target.28_move.0_tree.3 - z_p0_tree.3 = 0
+
+_C44: b_p1_tree.3.1 + b_p1_tree.3.2 = 1
+
+_C45: 99999 b_p1_tree.3.1 + z_p1_tree.3 <= 99999
+
+_C46: - 99999 b_p1_tree.3.2 + z_p1_tree.3 >= -99992
+
+_C47: 99999 b_p1_tree.3.2 + z_p1_tree.3 <= 100006
+
+_C48: source.18_target.22_dd_move.1_tree.3 + source.23_target.j_move.1_tree.3
+ + source.6_dd7_target.c_move.1_tree.3 + source.a_target.0_move.1_tree.3
+ + source.e_target.d_move.1_tree.3 + source.k_target.23_move.1_tree.3
+ + source.n_target.28_move.1_tree.3 - z_p1_tree.3 = 0
+
+_C49: b_p2_tree.3.1 + b_p2_tree.3.2 = 1
+
+_C50: 99999 b_p2_tree.3.1 + z_p2_tree.3 <= 99999
+
+_C51: - 99999 b_p2_tree.3.2 + z_p2_tree.3 >= -99992
+
+_C52: 99999 b_p2_tree.3.2 + z_p2_tree.3 <= 100006
+
+_C53: source.18_target.22_move.2_tree.3 + source.23_target.j_move.2_tree.3
+ + source.6_dd7_target.c_move.2_tree.3 + source.a_target.0_move.2_tree.3
+ + source.e_target.d_move.2_tree.3 + source.k_target.23_move.2_tree.3
+ + source.n_target.o_move.2_tree.3 - z_p2_tree.3 = 0
+
+_C54: b_p3_tree.3.1 + b_p3_tree.3.2 = 1
+
+_C55: 99999 b_p3_tree.3.1 + z_p3_tree.3 <= 99999
+
+_C56: - 99999 b_p3_tree.3.2 + z_p3_tree.3 >= -99992
+
+_C57: 99999 b_p3_tree.3.2 + z_p3_tree.3 <= 100006
+
+_C58: source.18_target.28_move.3_tree.3 + source.23_target.j_move.3_tree.3
+ + source.6_dd7_target.c_move.3_tree.3 + source.a_target.0_move.3_tree.3
+ + source.e_target.d_move.3_tree.3 + source.k_target.23_move.3_tree.3
+ + source.n_target.o_move.3_tree.3 - z_p3_tree.3 = 0
+
+_C59: b_p4_tree.3.1 + b_p4_tree.3.2 = 1
+
+_C60: 99999 b_p4_tree.3.1 + z_p4_tree.3 <= 99999
+
+_C61: - 99999 b_p4_tree.3.2 + z_p4_tree.3 >= -99992
+
+_C62: 99999 b_p4_tree.3.2 + z_p4_tree.3 <= 100006
+
+_C63: source.18_target.28_dd_move.4_tree.3 + source.23_target.j_move.4_tree.3
+ + source.6_dd7_target.c_move.4_tree.3 + source.a_target.0_move.4_tree.3
+ + source.e_target.d_move.4_tree.3 + source.k_target.23_move.4_tree.3
+ + source.n_target.o_move.4_tree.3 - z_p4_tree.3 = 0
+
+_C64: z_p0_tree.3 + z_p1_tree.3 + z_p2_tree.3 + z_p3_tree.3 + z_p4_tree.3 = 7
+
+_C65: b_p0_tree.4.1 + b_p0_tree.4.2 = 1
+
+_C66: 99999 b_p0_tree.4.1 + z_p0_tree.4 <= 99999
+
+_C67: - 99999 b_p0_tree.4.2 + z_p0_tree.4 >= -99993
+
+_C68: 99999 b_p0_tree.4.2 + z_p0_tree.4 <= 100005
+
+_C69: source.13_target.d_move.0_tree.4 + source.1_target.d_move.0_tree.4
+ + source.c_target.b_move.0_tree.4 + source.e_target.f_move.0_tree.4
+ + source.k_target.j_move.0_tree.4 + source.l_target.18_move.0_tree.4
+ - z_p0_tree.4 = 0
+
+_C70: b_p1_tree.4.1 + b_p1_tree.4.2 = 1
+
+_C71: 99999 b_p1_tree.4.1 + z_p1_tree.4 <= 99999
+
+_C72: - 99999 b_p1_tree.4.2 + z_p1_tree.4 >= -99993
+
+_C73: 99999 b_p1_tree.4.2 + z_p1_tree.4 <= 100005
+
+_C74: source.13_target.d_move.1_tree.4 + source.2_target.d_move.1_tree.4
+ + source.c_target.b_move.1_tree.4 + source.e_target.f_move.1_tree.4
+ + source.k_target.j_move.1_tree.4 + source.l_target.18_move.1_tree.4
+ - z_p1_tree.4 = 0
+
+_C75: z_p0_tree.4 + z_p1_tree.4 = 6
+
+_C76: b_p0_tree.5.1 + b_p0_tree.5.2 = 1
+
+_C77: 99999 b_p0_tree.5.1 + z_p0_tree.5 <= 99999
+
+_C78: - 99999 b_p0_tree.5.2 + z_p0_tree.5 >= -99994
+
+_C79: 99999 b_p0_tree.5.2 + z_p0_tree.5 <= 100004
+
+_C80: source.0_target.12_move.0_tree.5 + source.11_target.0_move.0_tree.5
+ + source.6_target.b_move.0_tree.5 + source.c_target.d_move.0_tree.5
+ + source.f_target.b_move.0_tree.5 - z_p0_tree.5 = 0
+
+_C81: b_p1_tree.5.1 + b_p1_tree.5.2 = 1
+
+_C82: 99999 b_p1_tree.5.1 + z_p1_tree.5 <= 99999
+
+_C83: - 99999 b_p1_tree.5.2 + z_p1_tree.5 >= -99994
+
+_C84: 99999 b_p1_tree.5.2 + z_p1_tree.5 <= 100004
+
+_C85: source.11_target.0_move.1_tree.5 + source.1_target.12_move.1_tree.5
+ + source.6_target.b_move.1_tree.5 + source.c_target.d_move.1_tree.5
+ + source.f_target.b_move.1_tree.5 - z_p1_tree.5 = 0
+
+_C86: b_p2_tree.5.1 + b_p2_tree.5.2 = 1
+
+_C87: 99999 b_p2_tree.5.1 + z_p2_tree.5 <= 99999
+
+_C88: - 99999 b_p2_tree.5.2 + z_p2_tree.5 >= -99994
+
+_C89: 99999 b_p2_tree.5.2 + z_p2_tree.5 <= 100004
+
+_C90: source.11_target.0_move.2_tree.5 + source.2_target.12_move.2_tree.5
+ + source.6_target.b_move.2_tree.5 + source.c_target.d_move.2_tree.5
+ + source.f_target.b_move.2_tree.5 - z_p2_tree.5 = 0
+
+_C91: z_p0_tree.5 + z_p1_tree.5 + z_p2_tree.5 = 5
+
+_C92: b_p0_tree.6.1 + b_p0_tree.6.2 = 1
+
+_C93: 99999 b_p0_tree.6.1 + z_p0_tree.6 <= 99999
+
+_C94: - 99999 b_p0_tree.6.2 + z_p0_tree.6 >= -99993
+
+_C95: 99999 b_p0_tree.6.2 + z_p0_tree.6 <= 100005
+
+_C96: source.0_target.9_move.0_tree.6 + source.16_target.9_move.0_tree.6
+ + source.8_target.0_move.0_tree.6 + source.a_target.9_move.0_tree.6
+ + source.g_target.h_move.0_tree.6 + source.k_target.l_move.0_tree.6
+ - z_p0_tree.6 = 0
+
+_C97: z_p0_tree.6 = 6
+
+_C98: b_p0_tree.7.1 + b_p0_tree.7.2 = 1
+
+_C99: 99999 b_p0_tree.7.1 + z_p0_tree.7 <= 99999
+
+_C100: - 99999 b_p0_tree.7.2 + z_p0_tree.7 >= -99994
+
+_C101: 99999 b_p0_tree.7.2 + z_p0_tree.7 <= 100004
+
+_C102: source.0_target.b_move.0_tree.7 + source.11_target.0_move.0_tree.7
+ + source.2_target.12_move.0_tree.7 + source.9_target.13_move.0_tree.7
+ + source.j_target.k_move.0_tree.7 - z_p0_tree.7 = 0
+
+_C103: b_p1_tree.7.1 + b_p1_tree.7.2 = 1
+
+_C104: 99999 b_p1_tree.7.1 + z_p1_tree.7 <= 99999
+
+_C105: - 99999 b_p1_tree.7.2 + z_p1_tree.7 >= -99994
+
+_C106: 99999 b_p1_tree.7.2 + z_p1_tree.7 <= 100004
+
+_C107: source.0_target.b_move.1_tree.7 + source.11_target.0_move.1_tree.7
+ + source.2_target.12_move.1_tree.7 + source.e_target.13_move.1_tree.7
+ + source.j_target.k_move.1_tree.7 - z_p1_tree.7 = 0
+
+_C108: z_p0_tree.7 + z_p1_tree.7 = 5
+
+_C109: b_p0_tree.8.1 + b_p0_tree.8.2 = 1
+
+_C110: 99999 b_p0_tree.8.1 + z_p0_tree.8 <= 99999
+
+_C111: - 99999 b_p0_tree.8.2 + z_p0_tree.8 >= -99993
+
+_C112: 99999 b_p0_tree.8.2 + z_p0_tree.8 <= 100005
+
+_C113: source.0_target.13_move.0_tree.8 + source.11_target.0_move.0_tree.8
+ + source.23_target.m_move.0_tree.8 + source.25_target.18_move.0_tree.8
+ + source.a_target.13_move.0_tree.8 + source.k_target.j_move.0_tree.8
+ - z_p0_tree.8 = 0
+
+_C114: b_p1_tree.8.1 + b_p1_tree.8.2 = 1
+
+_C115: 99999 b_p1_tree.8.1 + z_p1_tree.8 <= 99999
+
+_C116: - 99999 b_p1_tree.8.2 + z_p1_tree.8 >= -99993
+
+_C117: 99999 b_p1_tree.8.2 + z_p1_tree.8 <= 100005
+
+_C118: source.0_target.13_move.1_tree.8 + source.12_target.0_move.1_tree.8
+ + source.23_target.m_move.1_tree.8 + source.25_target.18_move.1_tree.8
+ + source.a_target.13_move.1_tree.8 + source.k_target.j_move.1_tree.8
+ - z_p1_tree.8 = 0
+
+_C119: b_p2_tree.8.1 + b_p2_tree.8.2 = 1
+
+_C120: 99999 b_p2_tree.8.1 + z_p2_tree.8 <= 99999
+
+_C121: - 99999 b_p2_tree.8.2 + z_p2_tree.8 >= -99993
+
+_C122: 99999 b_p2_tree.8.2 + z_p2_tree.8 <= 100005
+
+_C123: source.0_target.13_move.2_tree.8 + source.11_target.0_move.2_tree.8
+ + source.25_target.18_move.2_tree.8 + source.a_target.13_move.2_tree.8
+ + source.k_target.j_move.2_tree.8 + source.l_target.m_move.2_tree.8
+ - z_p2_tree.8 = 0
+
+_C124: b_p3_tree.8.1 + b_p3_tree.8.2 = 1
+
+_C125: 99999 b_p3_tree.8.1 + z_p3_tree.8 <= 99999
+
+_C126: - 99999 b_p3_tree.8.2 + z_p3_tree.8 >= -99993
+
+_C127: 99999 b_p3_tree.8.2 + z_p3_tree.8 <= 100005
+
+_C128: source.0_target.13_move.3_tree.8 + source.12_target.0_move.3_tree.8
+ + source.25_target.18_move.3_tree.8 + source.a_target.13_move.3_tree.8
+ + source.k_target.j_move.3_tree.8 + source.l_target.m_move.3_tree.8
+ - z_p3_tree.8 = 0
+
+_C129: z_p0_tree.8 + z_p1_tree.8 + z_p2_tree.8 + z_p3_tree.8 = 6
+
+_C130: b_p0_tree.9.1 + b_p0_tree.9.2 = 1
+
+_C131: 99999 b_p0_tree.9.1 + z_p0_tree.9 <= 99999
+
+_C132: - 99999 b_p0_tree.9.2 + z_p0_tree.9 >= -99993
+
+_C133: 99999 b_p0_tree.9.2 + z_p0_tree.9 <= 100005
+
+_C134: source.11_dd_target.22_move.0_tree.9 + source.13_target.h_move.0_tree.9
+ + source.c_target.d_move.0_tree.9 + source.d_target.b_move.0_tree.9
+ + source.j_target.k_move.0_tree.9 + source.l_target.k_move.0_tree.9
+ - z_p0_tree.9 = 0
+
+_C135: z_p0_tree.9 = 6
+
+_C136: b_p0_tree.10.1 + b_p0_tree.10.2 = 1
+
+_C137: 99999 b_p0_tree.10.1 + z_p0_tree.10 <= 99999
+
+_C138: - 99999 b_p0_tree.10.2 + z_p0_tree.10 >= -99993
+
+_C139: 99999 b_p0_tree.10.2 + z_p0_tree.10 <= 100005
+
+_C140: source.13_target.8_move.0_tree.10 + source.25_target.0_move.0_tree.10
+ + source.6_dd7_target.f_move.0_tree.10 + source.c_target.d_move.0_tree.10
+ + source.e_target.d_move.0_tree.10 + source.j_target.k_move.0_tree.10
+ - z_p0_tree.10 = 0
+
+_C141: z_p0_tree.10 = 6
+
+_C142: b_p0_tree.11.1 + b_p0_tree.11.2 = 1
+
+_C143: 99999 b_p0_tree.11.1 + z_p0_tree.11 <= 99999
+
+_C144: - 99999 b_p0_tree.11.2 + z_p0_tree.11 >= -99994
+
+_C145: 99999 b_p0_tree.11.2 + z_p0_tree.11 <= 100004
+
+_C146: source.1_target.d_move.0_tree.11 + source.22_target.12_move.0_tree.11
+ + source.j_target.k_move.0_tree.11 + source.k_target.16_move.0_tree.11
+ + source.n_target.o_move.0_tree.11 - z_p0_tree.11 = 0
+
+_C147: z_p0_tree.11 = 5
+
+_C148: b_p0_tree.12.1 + b_p0_tree.12.2 = 1
+
+_C149: 99999 b_p0_tree.12.1 + z_p0_tree.12 <= 99999
+
+_C150: - 99999 b_p0_tree.12.2 + z_p0_tree.12 >= -99992
+
+_C151: 99999 b_p0_tree.12.2 + z_p0_tree.12 <= 100006
+
+_C152: source.1_target.9_dd7_move.0_tree.12
+ + source.a_target.9_dd7_move.0_tree.12 + source.d_target.e_move.0_tree.12
+ + source.f_target.e_move.0_tree.12 + source.j_target.11_move.0_tree.12
+ + source.k_target.l_move.0_tree.12 + source.o_target.25_move.0_tree.12
+ - z_p0_tree.12 = 0
+
+_C153: b_p1_tree.12.1 + b_p1_tree.12.2 = 1
+
+_C154: 99999 b_p1_tree.12.1 + z_p1_tree.12 <= 99999
+
+_C155: - 99999 b_p1_tree.12.2 + z_p1_tree.12 >= -99992
+
+_C156: 99999 b_p1_tree.12.2 + z_p1_tree.12 <= 100006
+
+_C157: source.1_target.9_dd7_move.1_tree.12
+ + source.a_target.9_dd7_move.1_tree.12 + source.d_target.e_move.1_tree.12
+ + source.f_target.e_move.1_tree.12 + source.j_target.12_move.1_tree.12
+ + source.k_target.l_move.1_tree.12 + source.o_target.25_move.1_tree.12
+ - z_p1_tree.12 = 0
+
+_C158: z_p0_tree.12 + z_p1_tree.12 = 7
+
+_C159: b_p0_tree.13.1 + b_p0_tree.13.2 = 1
+
+_C160: 99999 b_p0_tree.13.1 + z_p0_tree.13 <= 99999
+
+_C161: - 99999 b_p0_tree.13.2 + z_p0_tree.13 >= -99993
+
+_C162: 99999 b_p0_tree.13.2 + z_p0_tree.13 <= 100005
+
+_C163: source.12_target.i_move.0_tree.13 + source.18_target.0_move.0_tree.13
+ + source.8_target.j_move.0_tree.13 + source.9_dd7_target.0_move.0_tree.13
+ + source.c_target.b_move.0_tree.13 + source.f_target.e_move.0_tree.13
+ - z_p0_tree.13 = 0
+
+_C164: z_p0_tree.13 = 6
+
+_C165: b_p0_tree.14.1 + b_p0_tree.14.2 = 1
+
+_C166: 99999 b_p0_tree.14.1 + z_p0_tree.14 <= 99999
+
+_C167: - 99999 b_p0_tree.14.2 + z_p0_tree.14 >= -99994
+
+_C168: 99999 b_p0_tree.14.2 + z_p0_tree.14 <= 100004
+
+_C169: source.1_target.9_dd7_move.0_tree.14 + source.a_target.9_move.0_tree.14
+ + source.d_target.e_move.0_tree.14 + source.h_target.g_move.0_tree.14
+ + source.k_target.l_move.0_tree.14 - z_p0_tree.14 = 0
+
+_C170: z_p0_tree.14 = 5
+
+_C171: b_p0_tree.15.1 + b_p0_tree.15.2 = 1
+
+_C172: 99999 b_p0_tree.15.1 + z_p0_tree.15 <= 99999
+
+_C173: - 99999 b_p0_tree.15.2 + z_p0_tree.15 >= -99992
+
+_C174: 99999 b_p0_tree.15.2 + z_p0_tree.15 <= 100006
+
+_C175: source.11_dd_target.j_move.0_tree.15 + source.1_target.e_move.0_tree.15
+ + source.28_target.n_move.0_tree.15 + source.d_target.c_move.0_tree.15
+ + source.g_target.h_move.0_tree.15 + source.h_target.i_move.0_tree.15
+ + source.l_target.k_move.0_tree.15 - z_p0_tree.15 = 0
+
+_C176: b_p1_tree.15.1 + b_p1_tree.15.2 = 1
+
+_C177: 99999 b_p1_tree.15.1 + z_p1_tree.15 <= 99999
+
+_C178: - 99999 b_p1_tree.15.2 + z_p1_tree.15 >= -99992
+
+_C179: 99999 b_p1_tree.15.2 + z_p1_tree.15 <= 100006
+
+_C180: source.11_dd_target.j_move.1_tree.15 + source.1_target.e_move.1_tree.15
+ + source.d_target.c_move.1_tree.15 + source.g_target.h_move.1_tree.15
+ + source.h_target.i_move.1_tree.15 + source.l_target.k_move.1_tree.15
+ + source.o_target.n_move.1_tree.15 - z_p1_tree.15 = 0
+
+_C181: z_p0_tree.15 + z_p1_tree.15 = 7
+
+_C182: b_p0_tree.16.1 + b_p0_tree.16.2 = 1
+
+_C183: 99999 b_p0_tree.16.1 + z_p0_tree.16 <= 99999
+
+_C184: - 99999 b_p0_tree.16.2 + z_p0_tree.16 >= -99994
+
+_C185: 99999 b_p0_tree.16.2 + z_p0_tree.16 <= 100004
+
+_C186: source.13_target.d_move.0_tree.16 + source.1_target.d_move.0_tree.16
+ + source.a_target.6_move.0_tree.16 + source.e_target.f_move.0_tree.16
+ + source.j_target.k_move.0_tree.16 - z_p0_tree.16 = 0
+
+_C187: z_p0_tree.16 = 5
+
+_C188: b_p0_tree.17.1 + b_p0_tree.17.2 = 1
+
+_C189: 99999 b_p0_tree.17.1 + z_p0_tree.17 <= 99999
+
+_C190: - 99999 b_p0_tree.17.2 + z_p0_tree.17 >= -99994
+
+_C191: 99999 b_p0_tree.17.2 + z_p0_tree.17 <= 100004
+
+_C192: source.11_target.1_move.0_tree.17 + source.23_target.16_move.0_tree.17
+ + source.6_target.c_move.0_tree.17 + source.j_target.23_dd_move.0_tree.17
+ + source.k_target.l_move.0_tree.17 - z_p0_tree.17 = 0
+
+_C193: b_p1_tree.17.1 + b_p1_tree.17.2 = 1
+
+_C194: 99999 b_p1_tree.17.1 + z_p1_tree.17 <= 99999
+
+_C195: - 99999 b_p1_tree.17.2 + z_p1_tree.17 >= -99994
+
+_C196: 99999 b_p1_tree.17.2 + z_p1_tree.17 <= 100004
+
+_C197: source.12_target.1_move.1_tree.17 + source.23_target.16_move.1_tree.17
+ + source.6_target.c_move.1_tree.17 + source.j_target.23_dd_move.1_tree.17
+ + source.k_target.l_move.1_tree.17 - z_p1_tree.17 = 0
+
+_C198: z_p0_tree.17 + z_p1_tree.17 = 5
+
+_C199: b_p0_tree.18.1 + b_p0_tree.18.2 = 1
+
+_C200: 99999 b_p0_tree.18.1 + z_p0_tree.18 <= 99999
+
+_C201: - 99999 b_p0_tree.18.2 + z_p0_tree.18 >= -99994
+
+_C202: 99999 b_p0_tree.18.2 + z_p0_tree.18 <= 100004
+
+_C203: source.c_target.9_dd7_move.0_tree.18 + source.d_target.e_move.0_tree.18
+ + source.g_target.h_move.0_tree.18 + source.j_target.k_move.0_tree.18
+ + source.k_target.l_move.0_tree.18 - z_p0_tree.18 = 0
+
+_C204: z_p0_tree.18 = 5
+
+_C205: b_p0_tree.19.1 + b_p0_tree.19.2 = 1
+
+_C206: 99999 b_p0_tree.19.1 + z_p0_tree.19 <= 99999
+
+_C207: - 99999 b_p0_tree.19.2 + z_p0_tree.19 >= -99994
+
+_C208: 99999 b_p0_tree.19.2 + z_p0_tree.19 <= 100004
+
+_C209: source.6_dd7_target.11_dd_move.0_tree.19
+ + source.9_dd7_target.d_move.0_tree.19 + source.c_target.d_move.0_tree.19
+ + source.f_target.e_move.0_tree.19 + source.j_target.12_move.0_tree.19
+ - z_p0_tree.19 = 0
+
+_C210: z_p0_tree.19 = 5
+
+_C211: b_p0_tree.20.1 + b_p0_tree.20.2 = 1
+
+_C212: 99999 b_p0_tree.20.1 + z_p0_tree.20 <= 99999
+
+_C213: - 99999 b_p0_tree.20.2 + z_p0_tree.20 >= -99994
+
+_C214: 99999 b_p0_tree.20.2 + z_p0_tree.20 <= 100004
+
+_C215: source.13_target.h_move.0_tree.20 + source.1_target.d_move.0_tree.20
+ + source.a_target.d_move.0_tree.20 + source.e_target.f_move.0_tree.20
+ + source.j_target.6_move.0_tree.20 - z_p0_tree.20 = 0
+
+_C216: z_p0_tree.20 = 5
+
+_C217: b_p0_tree.21.1 + b_p0_tree.21.2 = 1
+
+_C218: 99999 b_p0_tree.21.1 + z_p0_tree.21 <= 99999
+
+_C219: - 99999 b_p0_tree.21.2 + z_p0_tree.21 >= -99993
+
+_C220: 99999 b_p0_tree.21.2 + z_p0_tree.21 <= 100005
+
+_C221: source.11_target.i_move.0_tree.21 + source.18_target.d_move.0_tree.21
+ + source.1_target.6_dd7_move.0_tree.21 + source.28_target.n_move.0_tree.21
+ + source.9_target.f_move.0_tree.21 + source.k_target.l_move.0_tree.21
+ - z_p0_tree.21 = 0
+
+_C222: b_p1_tree.21.1 + b_p1_tree.21.2 = 1
+
+_C223: 99999 b_p1_tree.21.1 + z_p1_tree.21 <= 99999
+
+_C224: - 99999 b_p1_tree.21.2 + z_p1_tree.21 >= -99993
+
+_C225: 99999 b_p1_tree.21.2 + z_p1_tree.21 <= 100005
+
+_C226: source.11_target.i_move.1_tree.21 + source.18_target.d_move.1_tree.21
+ + source.1_target.6_dd7_move.1_tree.21 + source.28_target.n_move.1_tree.21
+ + source.e_target.f_move.1_tree.21 + source.k_target.l_move.1_tree.21
+ - z_p1_tree.21 = 0
+
+_C227: b_p2_tree.21.1 + b_p2_tree.21.2 = 1
+
+_C228: 99999 b_p2_tree.21.1 + z_p2_tree.21 <= 99999
+
+_C229: - 99999 b_p2_tree.21.2 + z_p2_tree.21 >= -99993
+
+_C230: 99999 b_p2_tree.21.2 + z_p2_tree.21 <= 100005
+
+_C231: source.12_target.i_move.2_tree.21 + source.18_target.d_move.2_tree.21
+ + source.1_target.6_dd7_move.2_tree.21 + source.28_target.n_move.2_tree.21
+ + source.e_target.f_move.2_tree.21 + source.k_target.l_move.2_tree.21
+ - z_p2_tree.21 = 0
+
+_C232: b_p3_tree.21.1 + b_p3_tree.21.2 = 1
+
+_C233: 99999 b_p3_tree.21.1 + z_p3_tree.21 <= 99999
+
+_C234: - 99999 b_p3_tree.21.2 + z_p3_tree.21 >= -99993
+
+_C235: 99999 b_p3_tree.21.2 + z_p3_tree.21 <= 100005
+
+_C236: source.11_target.i_move.3_tree.21 + source.18_target.d_move.3_tree.21
+ + source.1_target.6_dd7_move.3_tree.21 + source.9_target.f_move.3_tree.21
+ + source.k_target.l_move.3_tree.21 + source.o_target.n_move.3_tree.21
+ - z_p3_tree.21 = 0
+
+_C237: b_p4_tree.21.1 + b_p4_tree.21.2 = 1
+
+_C238: 99999 b_p4_tree.21.1 + z_p4_tree.21 <= 99999
+
+_C239: - 99999 b_p4_tree.21.2 + z_p4_tree.21 >= -99993
+
+_C240: 99999 b_p4_tree.21.2 + z_p4_tree.21 <= 100005
+
+_C241: source.11_target.i_move.4_tree.21 + source.18_target.d_move.4_tree.21
+ + source.1_target.6_dd7_move.4_tree.21 + source.e_target.f_move.4_tree.21
+ + source.k_target.l_move.4_tree.21 + source.o_target.n_move.4_tree.21
+ - z_p4_tree.21 = 0
+
+_C242: b_p5_tree.21.1 + b_p5_tree.21.2 = 1
+
+_C243: 99999 b_p5_tree.21.1 + z_p5_tree.21 <= 99999
+
+_C244: - 99999 b_p5_tree.21.2 + z_p5_tree.21 >= -99993
+
+_C245: 99999 b_p5_tree.21.2 + z_p5_tree.21 <= 100005
+
+_C246: source.12_target.i_move.5_tree.21 + source.18_target.d_move.5_tree.21
+ + source.1_target.6_dd7_move.5_tree.21 + source.e_target.f_move.5_tree.21
+ + source.k_target.l_move.5_tree.21 + source.o_target.n_move.5_tree.21
+ - z_p5_tree.21 = 0
+
+_C247: z_p0_tree.21 + z_p1_tree.21 + z_p2_tree.21 + z_p3_tree.21
+ + z_p4_tree.21 + z_p5_tree.21 = 6
+
+_C248: b_p0_tree.22.1 + b_p0_tree.22.2 = 1
+
+_C249: 99999 b_p0_tree.22.1 + z_p0_tree.22 <= 99999
+
+_C250: - 99999 b_p0_tree.22.2 + z_p0_tree.22 >= -99993
+
+_C251: 99999 b_p0_tree.22.2 + z_p0_tree.22 <= 100005
+
+_C252: source.0_target.e_move.0_tree.22 + source.13_target.h_move.0_tree.22
+ + source.8_target.0_move.0_tree.22 + source.a_target.e_move.0_tree.22
+ + source.j_target.23_move.0_tree.22 + source.k_target.l_move.0_tree.22
+ - z_p0_tree.22 = 0
+
+_C253: z_p0_tree.22 = 6
+
+_C254: b_p0_tree.23.1 + b_p0_tree.23.2 = 1
+
+_C255: 99999 b_p0_tree.23.1 + z_p0_tree.23 <= 99999
+
+_C256: - 99999 b_p0_tree.23.2 + z_p0_tree.23 >= -99994
+
+_C257: 99999 b_p0_tree.23.2 + z_p0_tree.23 <= 100004
+
+_C258: source.13_target.h_move.0_tree.23 + source.23_target.0_move.0_tree.23
+ + source.a_target.ROOT__move.0_tree.23 + source.e_target.f_move.0_tree.23
+ + source.k_target.l_move.0_tree.23 - z_p0_tree.23 = 0
+
+_C259: z_p0_tree.23 = 5
+
+_C260: b_p0_tree.24.1 + b_p0_tree.24.2 = 1
+
+_C261: 99999 b_p0_tree.24.1 + z_p0_tree.24 <= 99999
+
+_C262: - 99999 b_p0_tree.24.2 + z_p0_tree.24 >= -99993
+
+_C263: 99999 b_p0_tree.24.2 + z_p0_tree.24 <= 100005
+
+_C264: source.0_target.13_move.0_tree.24 + source.12_target.b_move.0_tree.24
+ + source.18_target.0_move.0_tree.24 + source.2_target.i_move.0_tree.24
+ + source.8_target.j_move.0_tree.24 + source.e_target.d_move.0_tree.24
+ - z_p0_tree.24 = 0
+
+_C265: z_p0_tree.24 = 6
+
+_C266: b_p0_tree.25.1 + b_p0_tree.25.2 = 1
+
+_C267: 99999 b_p0_tree.25.1 + z_p0_tree.25 <= 99999
+
+_C268: - 99999 b_p0_tree.25.2 + z_p0_tree.25 >= -99992
+
+_C269: 99999 b_p0_tree.25.2 + z_p0_tree.25 <= 100006
+
+_C270: source.23_target.28_dd_move.0_tree.25
+ + source.6_dd7_target.c_move.0_tree.25 + source.e_target.d_move.0_tree.25
+ + source.f_target.d_move.0_tree.25 + source.j_target.11_move.0_tree.25
+ + source.k_target.23_move.0_tree.25 + source.n_target.o_move.0_tree.25
+ - z_p0_tree.25 = 0
+
+_C271: b_p1_tree.25.1 + b_p1_tree.25.2 = 1
+
+_C272: 99999 b_p1_tree.25.1 + z_p1_tree.25 <= 99999
+
+_C273: - 99999 b_p1_tree.25.2 + z_p1_tree.25 >= -99992
+
+_C274: 99999 b_p1_tree.25.2 + z_p1_tree.25 <= 100006
+
+_C275: source.23_target.28_dd_move.1_tree.25
+ + source.6_dd7_target.c_move.1_tree.25 + source.e_target.d_move.1_tree.25
+ + source.f_target.d_move.1_tree.25 + source.j_target.12_move.1_tree.25
+ + source.k_target.23_move.1_tree.25 + source.n_target.o_move.1_tree.25
+ - z_p1_tree.25 = 0
+
+_C276: z_p0_tree.25 + z_p1_tree.25 = 7
+
+_C277: b_p0_tree.26.1 + b_p0_tree.26.2 = 1
+
+_C278: 99999 b_p0_tree.26.1 + z_p0_tree.26 <= 99999
+
+_C279: - 99999 b_p0_tree.26.2 + z_p0_tree.26 >= -99994
+
+_C280: 99999 b_p0_tree.26.2 + z_p0_tree.26 <= 100004
+
+_C281: source.16_target.23_move.0_tree.26 + source.23_target.0_move.0_tree.26
+ + source.c_target.d_move.0_tree.26 + source.g_target.h_move.0_tree.26
+ + source.k_target.l_move.0_tree.26 - z_p0_tree.26 = 0
+
+_C282: z_p0_tree.26 = 5
+
+_C283: b_p0_tree.27.1 + b_p0_tree.27.2 = 1
+
+_C284: 99999 b_p0_tree.27.1 + z_p0_tree.27 <= 99999
+
+_C285: - 99999 b_p0_tree.27.2 + z_p0_tree.27 >= -99994
+
+_C286: 99999 b_p0_tree.27.2 + z_p0_tree.27 <= 100004
+
+_C287: source.0_target.f_move.0_tree.27 + source.11_target.0_move.0_tree.27
+ + source.b_target.6_dd7_move.0_tree.27 + source.c_target.d_move.0_tree.27
+ + source.j_target.k_move.0_tree.27 - z_p0_tree.27 = 0
+
+_C288: z_p0_tree.27 = 5
+
+_C289: b_p0_tree.28.1 + b_p0_tree.28.2 = 1
+
+_C290: 99999 b_p0_tree.28.1 + z_p0_tree.28 <= 99999
+
+_C291: - 99999 b_p0_tree.28.2 + z_p0_tree.28 >= -99994
+
+_C292: 99999 b_p0_tree.28.2 + z_p0_tree.28 <= 100004
+
+_C293: source.18_target.0_move.0_tree.28 + source.d_target.c_move.0_tree.28
+ + source.f_target.e_move.0_tree.28 + source.k_target.l_move.0_tree.28
+ + source.l_target.j_move.0_tree.28 - z_p0_tree.28 = 0
+
+_C294: z_p0_tree.28 = 5
+
+_C295: b_p0_tree.29.1 + b_p0_tree.29.2 = 1
+
+_C296: 99999 b_p0_tree.29.1 + z_p0_tree.29 <= 99999
+
+_C297: - 99999 b_p0_tree.29.2 + z_p0_tree.29 >= -99993
+
+_C298: 99999 b_p0_tree.29.2 + z_p0_tree.29 <= 100005
+
+_C299: source.18_target.m_move.0_tree.29 + source.9_target.i_move.0_tree.29
+ + source.d_target.e_move.0_tree.29 + source.k_target.j_move.0_tree.29
+ + source.l_target.j_move.0_tree.29 + source.m_target.1_move.0_tree.29
+ - z_p0_tree.29 = 0
+
+_C300: z_p0_tree.29 = 6
+
+_C301: pesum_1_dd7_b + 99999 u_1_dd7_b <= 99999
+
+_C302: - pesum_1_dd7_b + source.1_dd7_target.b_move.0_tree.0
+ + source.1_dd7_target.b_move.1_tree.0 = 0
+
+_C303: pesum_d_13_dd + 99999 u_d_13_dd <= 99999
+
+_C304: - pesum_d_13_dd + source.d_target.13_dd_move.0_tree.0
+ + source.d_target.13_dd_move.1_tree.0 = 0
+
+_C305: pesum_e_f + 99999 u_e_f <= 99999
+
+_C306: - pesum_e_f + source.e_target.f_move.0_tree.0
+ + source.e_target.f_move.0_tree.16 + source.e_target.f_move.0_tree.20
+ + source.e_target.f_move.0_tree.23 + source.e_target.f_move.0_tree.4
+ + source.e_target.f_move.1_tree.0 + source.e_target.f_move.1_tree.21
+ + source.e_target.f_move.1_tree.4 + source.e_target.f_move.2_tree.21
+ + source.e_target.f_move.4_tree.21 + source.e_target.f_move.5_tree.21 = 0
+
+_C307: pesum_12_c + 99999 u_12_c <= 99999
+
+_C308: - pesum_12_c + source.12_target.c_move.0_tree.0
+ + source.12_target.c_move.1_tree.0 = 0
+
+_C309: pesum_18_k + 99999 u_18_k <= 99999
+
+_C310: - pesum_18_k + source.18_target.k_move.0_tree.0
+ + source.18_target.k_move.1_tree.0 = 0
+
+_C311: pesum_25_0 + 99999 u_25_0 <= 99999
+
+_C312: - pesum_25_0 + source.25_target.0_move.0_tree.0
+ + source.25_target.0_move.0_tree.10 = 0
+
+_C313: pesum_m_0 + 99999 u_m_0 <= 99999
+
+_C314: - pesum_m_0 + source.m_target.0_move.1_tree.0 = 0
+
+_C315: pesum_6_c + 99999 u_6_c <= 99999
+
+_C316: - pesum_6_c + source.6_target.c_move.0_tree.1
+ + source.6_target.c_move.0_tree.17 + source.6_target.c_move.1_tree.1
+ + source.6_target.c_move.1_tree.17 = 0
+
+_C317: pesum_11_1 + 99999 u_11_1 <= 99999
+
+_C318: - pesum_11_1 + source.11_target.1_move.0_tree.1
+ + source.11_target.1_move.0_tree.17 = 0
+
+_C319: pesum_f_c + 99999 u_f_c <= 99999
+
+_C320: - pesum_f_c + source.f_target.c_move.0_tree.1
+ + source.f_target.c_move.1_tree.1 = 0
+
+_C321: pesum_j_k + 99999 u_j_k <= 99999
+
+_C322: - pesum_j_k + source.j_target.k_move.0_tree.1
+ + source.j_target.k_move.0_tree.10 + source.j_target.k_move.0_tree.11
+ + source.j_target.k_move.0_tree.16 + source.j_target.k_move.0_tree.18
+ + source.j_target.k_move.0_tree.27 + source.j_target.k_move.0_tree.7
+ + source.j_target.k_move.0_tree.9 + source.j_target.k_move.1_tree.1
+ + source.j_target.k_move.1_tree.7 = 0
+
+_C323: pesum_k_16 + 99999 u_k_16 <= 99999
+
+_C324: - pesum_k_16 + source.k_target.16_move.0_tree.1
+ + source.k_target.16_move.0_tree.11 + source.k_target.16_move.1_tree.1 = 0
+
+_C325: pesum_23_1 + 99999 u_23_1 <= 99999
+
+_C326: - pesum_23_1 + source.23_target.1_move.0_tree.1
+ + source.23_target.1_move.1_tree.1 = 0
+
+_C327: pesum_12_1 + 99999 u_12_1 <= 99999
+
+_C328: - pesum_12_1 + source.12_target.1_move.1_tree.1
+ + source.12_target.1_move.1_tree.17 = 0
+
+_C329: pesum_d_c + 99999 u_d_c <= 99999
+
+_C330: - pesum_d_c + source.d_target.c_move.0_tree.15
+ + source.d_target.c_move.0_tree.2 + source.d_target.c_move.0_tree.28
+ + source.d_target.c_move.1_tree.15 + source.d_target.c_move.1_tree.2
+ + source.d_target.c_move.2_tree.2 = 0
+
+_C331: pesum_13_e + 99999 u_13_e <= 99999
+
+_C332: - pesum_13_e + source.13_target.e_move.0_tree.2
+ + source.13_target.e_move.1_tree.2 + source.13_target.e_move.2_tree.2 = 0
+
+_C333: pesum_22_11 + 99999 u_22_11 <= 99999
+
+_C334: - pesum_22_11 + source.22_target.11_move.0_tree.2 = 0
+
+_C335: pesum_28_n + 99999 u_28_n <= 99999
+
+_C336: - pesum_28_n + source.28_target.n_move.0_tree.15
+ + source.28_target.n_move.0_tree.2 + source.28_target.n_move.0_tree.21
+ + source.28_target.n_move.1_tree.2 + source.28_target.n_move.1_tree.21
+ + source.28_target.n_move.2_tree.21 = 0
+
+_C337: pesum_p_n + 99999 u_p_n <= 99999
+
+_C338: - pesum_p_n + source.p_target.n_move.0_tree.2
+ + source.p_target.n_move.1_tree.2 + source.p_target.n_move.2_tree.2 = 0
+
+_C339: pesum_23_11 + 99999 u_23_11 <= 99999
+
+_C340: - pesum_23_11 + source.23_target.11_move.1_tree.2
+ + source.23_target.11_move.2_tree.2 = 0
+
+_C341: pesum_o_n + 99999 u_o_n <= 99999
+
+_C342: - pesum_o_n + source.o_target.n_move.1_tree.15
+ + source.o_target.n_move.2_tree.2 + source.o_target.n_move.3_tree.21
+ + source.o_target.n_move.4_tree.21 + source.o_target.n_move.5_tree.21 = 0
+
+_C343: pesum_a_0 + 99999 u_a_0 <= 99999
+
+_C344: - pesum_a_0 + source.a_target.0_move.0_tree.3
+ + source.a_target.0_move.1_tree.3 + source.a_target.0_move.2_tree.3
+ + source.a_target.0_move.3_tree.3 + source.a_target.0_move.4_tree.3 = 0
+
+_C345: pesum_6_dd7_c + 99999 u_6_dd7_c <= 99999
+
+_C346: - pesum_6_dd7_c + source.6_dd7_target.c_move.0_tree.25
+ + source.6_dd7_target.c_move.0_tree.3 + source.6_dd7_target.c_move.1_tree.25
+ + source.6_dd7_target.c_move.1_tree.3 + source.6_dd7_target.c_move.2_tree.3
+ + source.6_dd7_target.c_move.3_tree.3 + source.6_dd7_target.c_move.4_tree.3
+ = 0
+
+_C347: pesum_e_d + 99999 u_e_d <= 99999
+
+_C348: - pesum_e_d + source.e_target.d_move.0_tree.10
+ + source.e_target.d_move.0_tree.24 + source.e_target.d_move.0_tree.25
+ + source.e_target.d_move.0_tree.3 + source.e_target.d_move.1_tree.25
+ + source.e_target.d_move.1_tree.3 + source.e_target.d_move.2_tree.3
+ + source.e_target.d_move.3_tree.3 + source.e_target.d_move.4_tree.3 = 0
+
+_C349: pesum_18_22 + 99999 u_18_22 <= 99999
+
+_C350: - pesum_18_22 + source.18_target.22_move.0_tree.3
+ + source.18_target.22_move.2_tree.3 = 0
+
+_C351: pesum_k_23 + 99999 u_k_23 <= 99999
+
+_C352: - pesum_k_23 + source.k_target.23_move.0_tree.25
+ + source.k_target.23_move.0_tree.3 + source.k_target.23_move.1_tree.25
+ + source.k_target.23_move.1_tree.3 + source.k_target.23_move.2_tree.3
+ + source.k_target.23_move.3_tree.3 + source.k_target.23_move.4_tree.3 = 0
+
+_C353: pesum_23_j + 99999 u_23_j <= 99999
+
+_C354: - pesum_23_j + source.23_target.j_move.0_tree.3
+ + source.23_target.j_move.1_tree.3 + source.23_target.j_move.2_tree.3
+ + source.23_target.j_move.3_tree.3 + source.23_target.j_move.4_tree.3 = 0
+
+_C355: pesum_n_28 + 99999 u_n_28 <= 99999
+
+_C356: - pesum_n_28 + source.n_target.28_move.0_tree.3
+ + source.n_target.28_move.1_tree.3 = 0
+
+_C357: pesum_18_22_dd + 99999 u_18_22_dd <= 99999
+
+_C358: - pesum_18_22_dd + source.18_target.22_dd_move.1_tree.3 = 0
+
+_C359: pesum_n_o + 99999 u_n_o <= 99999
+
+_C360: - pesum_n_o + source.n_target.o_move.0_tree.11
+ + source.n_target.o_move.0_tree.25 + source.n_target.o_move.1_tree.25
+ + source.n_target.o_move.2_tree.3 + source.n_target.o_move.3_tree.3
+ + source.n_target.o_move.4_tree.3 = 0
+
+_C361: pesum_18_28 + 99999 u_18_28 <= 99999
+
+_C362: - pesum_18_28 + source.18_target.28_move.3_tree.3 = 0
+
+_C363: pesum_18_28_dd + 99999 u_18_28_dd <= 99999
+
+_C364: - pesum_18_28_dd + source.18_target.28_dd_move.4_tree.3 = 0
+
+_C365: pesum_1_d + 99999 u_1_d <= 99999
+
+_C366: - pesum_1_d + source.1_target.d_move.0_tree.11
+ + source.1_target.d_move.0_tree.16 + source.1_target.d_move.0_tree.20
+ + source.1_target.d_move.0_tree.4 = 0
+
+_C367: pesum_c_b + 99999 u_c_b <= 99999
+
+_C368: - pesum_c_b + source.c_target.b_move.0_tree.13
+ + source.c_target.b_move.0_tree.4 + source.c_target.b_move.1_tree.4 = 0
+
+_C369: pesum_13_d + 99999 u_13_d <= 99999
+
+_C370: - pesum_13_d + source.13_target.d_move.0_tree.16
+ + source.13_target.d_move.0_tree.4 + source.13_target.d_move.1_tree.4 = 0
+
+_C371: pesum_k_j + 99999 u_k_j <= 99999
+
+_C372: - pesum_k_j + source.k_target.j_move.0_tree.29
+ + source.k_target.j_move.0_tree.4 + source.k_target.j_move.0_tree.8
+ + source.k_target.j_move.1_tree.4 + source.k_target.j_move.1_tree.8
+ + source.k_target.j_move.2_tree.8 + source.k_target.j_move.3_tree.8 = 0
+
+_C373: pesum_l_18 + 99999 u_l_18 <= 99999
+
+_C374: - pesum_l_18 + source.l_target.18_move.0_tree.4
+ + source.l_target.18_move.1_tree.4 = 0
+
+_C375: pesum_2_d + 99999 u_2_d <= 99999
+
+_C376: - pesum_2_d + source.2_target.d_move.1_tree.4 = 0
+
+_C377: pesum_0_12 + 99999 u_0_12 <= 99999
+
+_C378: - pesum_0_12 + source.0_target.12_move.0_tree.5 = 0
+
+_C379: pesum_c_d + 99999 u_c_d <= 99999
+
+_C380: - pesum_c_d + source.c_target.d_move.0_tree.10
+ + source.c_target.d_move.0_tree.19 + source.c_target.d_move.0_tree.26
+ + source.c_target.d_move.0_tree.27 + source.c_target.d_move.0_tree.5
+ + source.c_target.d_move.0_tree.9 + source.c_target.d_move.1_tree.5
+ + source.c_target.d_move.2_tree.5 = 0
+
+_C381: pesum_6_b + 99999 u_6_b <= 99999
+
+_C382: - pesum_6_b + source.6_target.b_move.0_tree.5
+ + source.6_target.b_move.1_tree.5 + source.6_target.b_move.2_tree.5 = 0
+
+_C383: pesum_11_0 + 99999 u_11_0 <= 99999
+
+_C384: - pesum_11_0 + source.11_target.0_move.0_tree.27
+ + source.11_target.0_move.0_tree.5 + source.11_target.0_move.0_tree.7
+ + source.11_target.0_move.0_tree.8 + source.11_target.0_move.1_tree.5
+ + source.11_target.0_move.1_tree.7 + source.11_target.0_move.2_tree.5
+ + source.11_target.0_move.2_tree.8 = 0
+
+_C385: pesum_f_b + 99999 u_f_b <= 99999
+
+_C386: - pesum_f_b + source.f_target.b_move.0_tree.5
+ + source.f_target.b_move.1_tree.5 + source.f_target.b_move.2_tree.5 = 0
+
+_C387: pesum_1_12 + 99999 u_1_12 <= 99999
+
+_C388: - pesum_1_12 + source.1_target.12_move.1_tree.5 = 0
+
+_C389: pesum_2_12 + 99999 u_2_12 <= 99999
+
+_C390: - pesum_2_12 + source.2_target.12_move.0_tree.7
+ + source.2_target.12_move.1_tree.7 + source.2_target.12_move.2_tree.5 = 0
+
+_C391: pesum_0_9 + 99999 u_0_9 <= 99999
+
+_C392: - pesum_0_9 + source.0_target.9_move.0_tree.6 = 0
+
+_C393: pesum_a_9 + 99999 u_a_9 <= 99999
+
+_C394: - pesum_a_9 + source.a_target.9_move.0_tree.14
+ + source.a_target.9_move.0_tree.6 = 0
+
+_C395: pesum_8_0 + 99999 u_8_0 <= 99999
+
+_C396: - pesum_8_0 + source.8_target.0_move.0_tree.22
+ + source.8_target.0_move.0_tree.6 = 0
+
+_C397: pesum_g_h + 99999 u_g_h <= 99999
+
+_C398: - pesum_g_h + source.g_target.h_move.0_tree.15
+ + source.g_target.h_move.0_tree.18 + source.g_target.h_move.0_tree.26
+ + source.g_target.h_move.0_tree.6 + source.g_target.h_move.1_tree.15 = 0
+
+_C399: pesum_16_9 + 99999 u_16_9 <= 99999
+
+_C400: - pesum_16_9 + source.16_target.9_move.0_tree.6 = 0
+
+_C401: pesum_k_l + 99999 u_k_l <= 99999
+
+_C402: - pesum_k_l + source.k_target.l_move.0_tree.12
+ + source.k_target.l_move.0_tree.14 + source.k_target.l_move.0_tree.17
+ + source.k_target.l_move.0_tree.18 + source.k_target.l_move.0_tree.21
+ + source.k_target.l_move.0_tree.22 + source.k_target.l_move.0_tree.23
+ + source.k_target.l_move.0_tree.26 + source.k_target.l_move.0_tree.28
+ + source.k_target.l_move.0_tree.6 + source.k_target.l_move.1_tree.12
+ + source.k_target.l_move.1_tree.17 + source.k_target.l_move.1_tree.21
+ + source.k_target.l_move.2_tree.21 + source.k_target.l_move.3_tree.21
+ + source.k_target.l_move.4_tree.21 + source.k_target.l_move.5_tree.21 = 0
+
+_C403: pesum_0_b + 99999 u_0_b <= 99999
+
+_C404: - pesum_0_b + source.0_target.b_move.0_tree.7
+ + source.0_target.b_move.1_tree.7 = 0
+
+_C405: pesum_9_13 + 99999 u_9_13 <= 99999
+
+_C406: - pesum_9_13 + source.9_target.13_move.0_tree.7 = 0
+
+_C407: pesum_e_13 + 99999 u_e_13 <= 99999
+
+_C408: - pesum_e_13 + source.e_target.13_move.1_tree.7 = 0
+
+_C409: pesum_0_13 + 99999 u_0_13 <= 99999
+
+_C410: - pesum_0_13 + source.0_target.13_move.0_tree.24
+ + source.0_target.13_move.0_tree.8 + source.0_target.13_move.1_tree.8
+ + source.0_target.13_move.2_tree.8 + source.0_target.13_move.3_tree.8 = 0
+
+_C411: pesum_a_13 + 99999 u_a_13 <= 99999
+
+_C412: - pesum_a_13 + source.a_target.13_move.0_tree.8
+ + source.a_target.13_move.1_tree.8 + source.a_target.13_move.2_tree.8
+ + source.a_target.13_move.3_tree.8 = 0
+
+_C413: pesum_23_m + 99999 u_23_m <= 99999
+
+_C414: - pesum_23_m + source.23_target.m_move.0_tree.8
+ + source.23_target.m_move.1_tree.8 = 0
+
+_C415: pesum_25_18 + 99999 u_25_18 <= 99999
+
+_C416: - pesum_25_18 + source.25_target.18_move.0_tree.8
+ + source.25_target.18_move.1_tree.8 + source.25_target.18_move.2_tree.8
+ + source.25_target.18_move.3_tree.8 = 0
+
+_C417: pesum_12_0 + 99999 u_12_0 <= 99999
+
+_C418: - pesum_12_0 + source.12_target.0_move.1_tree.8
+ + source.12_target.0_move.3_tree.8 = 0
+
+_C419: pesum_l_m + 99999 u_l_m <= 99999
+
+_C420: - pesum_l_m + source.l_target.m_move.2_tree.8
+ + source.l_target.m_move.3_tree.8 = 0
+
+_C421: pesum_d_b + 99999 u_d_b <= 99999
+
+_C422: - pesum_d_b + source.d_target.b_move.0_tree.9 = 0
+
+_C423: pesum_13_h + 99999 u_13_h <= 99999
+
+_C424: - pesum_13_h + source.13_target.h_move.0_tree.20
+ + source.13_target.h_move.0_tree.22 + source.13_target.h_move.0_tree.23
+ + source.13_target.h_move.0_tree.9 = 0
+
+_C425: pesum_11_dd_22 + 99999 u_11_dd_22 <= 99999
+
+_C426: - pesum_11_dd_22 + source.11_dd_target.22_move.0_tree.9 = 0
+
+_C427: pesum_l_k + 99999 u_l_k <= 99999
+
+_C428: - pesum_l_k + source.l_target.k_move.0_tree.15
+ + source.l_target.k_move.0_tree.9 + source.l_target.k_move.1_tree.15 = 0
+
+_C429: pesum_6_dd7_f + 99999 u_6_dd7_f <= 99999
+
+_C430: - pesum_6_dd7_f + source.6_dd7_target.f_move.0_tree.10 = 0
+
+_C431: pesum_13_8 + 99999 u_13_8 <= 99999
+
+_C432: - pesum_13_8 + source.13_target.8_move.0_tree.10 = 0
+
+_C433: pesum_22_12 + 99999 u_22_12 <= 99999
+
+_C434: - pesum_22_12 + source.22_target.12_move.0_tree.11 = 0
+
+_C435: pesum_1_9_dd7 + 99999 u_1_9_dd7 <= 99999
+
+_C436: - pesum_1_9_dd7 + source.1_target.9_dd7_move.0_tree.12
+ + source.1_target.9_dd7_move.0_tree.14 + source.1_target.9_dd7_move.1_tree.12
+ = 0
+
+_C437: pesum_a_9_dd7 + 99999 u_a_9_dd7 <= 99999
+
+_C438: - pesum_a_9_dd7 + source.a_target.9_dd7_move.0_tree.12
+ + source.a_target.9_dd7_move.1_tree.12 = 0
+
+_C439: pesum_d_e + 99999 u_d_e <= 99999
+
+_C440: - pesum_d_e + source.d_target.e_move.0_tree.12
+ + source.d_target.e_move.0_tree.14 + source.d_target.e_move.0_tree.18
+ + source.d_target.e_move.0_tree.29 + source.d_target.e_move.1_tree.12 = 0
+
+_C441: pesum_f_e + 99999 u_f_e <= 99999
+
+_C442: - pesum_f_e + source.f_target.e_move.0_tree.12
+ + source.f_target.e_move.0_tree.13 + source.f_target.e_move.0_tree.19
+ + source.f_target.e_move.0_tree.28 + source.f_target.e_move.1_tree.12 = 0
+
+_C443: pesum_j_11 + 99999 u_j_11 <= 99999
+
+_C444: - pesum_j_11 + source.j_target.11_move.0_tree.12
+ + source.j_target.11_move.0_tree.25 = 0
+
+_C445: pesum_o_25 + 99999 u_o_25 <= 99999
+
+_C446: - pesum_o_25 + source.o_target.25_move.0_tree.12
+ + source.o_target.25_move.1_tree.12 = 0
+
+_C447: pesum_j_12 + 99999 u_j_12 <= 99999
+
+_C448: - pesum_j_12 + source.j_target.12_move.0_tree.19
+ + source.j_target.12_move.1_tree.12 + source.j_target.12_move.1_tree.25 = 0
+
+_C449: pesum_8_j + 99999 u_8_j <= 99999
+
+_C450: - pesum_8_j + source.8_target.j_move.0_tree.13
+ + source.8_target.j_move.0_tree.24 = 0
+
+_C451: pesum_9_dd7_0 + 99999 u_9_dd7_0 <= 99999
+
+_C452: - pesum_9_dd7_0 + source.9_dd7_target.0_move.0_tree.13 = 0
+
+_C453: pesum_12_i + 99999 u_12_i <= 99999
+
+_C454: - pesum_12_i + source.12_target.i_move.0_tree.13
+ + source.12_target.i_move.2_tree.21 + source.12_target.i_move.5_tree.21 = 0
+
+_C455: pesum_18_0 + 99999 u_18_0 <= 99999
+
+_C456: - pesum_18_0 + source.18_target.0_move.0_tree.13
+ + source.18_target.0_move.0_tree.24 + source.18_target.0_move.0_tree.28 = 0
+
+_C457: pesum_h_g + 99999 u_h_g <= 99999
+
+_C458: - pesum_h_g + source.h_target.g_move.0_tree.14 = 0
+
+_C459: pesum_1_e + 99999 u_1_e <= 99999
+
+_C460: - pesum_1_e + source.1_target.e_move.0_tree.15
+ + source.1_target.e_move.1_tree.15 = 0
+
+_C461: pesum_h_i + 99999 u_h_i <= 99999
+
+_C462: - pesum_h_i + source.h_target.i_move.0_tree.15
+ + source.h_target.i_move.1_tree.15 = 0
+
+_C463: pesum_11_dd_j + 99999 u_11_dd_j <= 99999
+
+_C464: - pesum_11_dd_j + source.11_dd_target.j_move.0_tree.15
+ + source.11_dd_target.j_move.1_tree.15 = 0
+
+_C465: pesum_a_6 + 99999 u_a_6 <= 99999
+
+_C466: - pesum_a_6 + source.a_target.6_move.0_tree.16 = 0
+
+_C467: pesum_j_23_dd + 99999 u_j_23_dd <= 99999
+
+_C468: - pesum_j_23_dd + source.j_target.23_dd_move.0_tree.17
+ + source.j_target.23_dd_move.1_tree.17 = 0
+
+_C469: pesum_23_16 + 99999 u_23_16 <= 99999
+
+_C470: - pesum_23_16 + source.23_target.16_move.0_tree.17
+ + source.23_target.16_move.1_tree.17 = 0
+
+_C471: pesum_c_9_dd7 + 99999 u_c_9_dd7 <= 99999
+
+_C472: - pesum_c_9_dd7 + source.c_target.9_dd7_move.0_tree.18 = 0
+
+_C473: pesum_6_dd7_11_dd + 99999 u_6_dd7_11_dd <= 99999
+
+_C474: - pesum_6_dd7_11_dd + source.6_dd7_target.11_dd_move.0_tree.19 = 0
+
+_C475: pesum_9_dd7_d + 99999 u_9_dd7_d <= 99999
+
+_C476: - pesum_9_dd7_d + source.9_dd7_target.d_move.0_tree.19 = 0
+
+_C477: pesum_a_d + 99999 u_a_d <= 99999
+
+_C478: - pesum_a_d + source.a_target.d_move.0_tree.20 = 0
+
+_C479: pesum_j_6 + 99999 u_j_6 <= 99999
+
+_C480: - pesum_j_6 + source.j_target.6_move.0_tree.20 = 0
+
+_C481: pesum_1_6_dd7 + 99999 u_1_6_dd7 <= 99999
+
+_C482: - pesum_1_6_dd7 + source.1_target.6_dd7_move.0_tree.21
+ + source.1_target.6_dd7_move.1_tree.21 + source.1_target.6_dd7_move.2_tree.21
+ + source.1_target.6_dd7_move.3_tree.21 + source.1_target.6_dd7_move.4_tree.21
+ + source.1_target.6_dd7_move.5_tree.21 = 0
+
+_C483: pesum_9_f + 99999 u_9_f <= 99999
+
+_C484: - pesum_9_f + source.9_target.f_move.0_tree.21
+ + source.9_target.f_move.3_tree.21 = 0
+
+_C485: pesum_11_i + 99999 u_11_i <= 99999
+
+_C486: - pesum_11_i + source.11_target.i_move.0_tree.21
+ + source.11_target.i_move.1_tree.21 + source.11_target.i_move.3_tree.21
+ + source.11_target.i_move.4_tree.21 = 0
+
+_C487: pesum_18_d + 99999 u_18_d <= 99999
+
+_C488: - pesum_18_d + source.18_target.d_move.0_tree.21
+ + source.18_target.d_move.1_tree.21 + source.18_target.d_move.2_tree.21
+ + source.18_target.d_move.3_tree.21 + source.18_target.d_move.4_tree.21
+ + source.18_target.d_move.5_tree.21 = 0
+
+_C489: pesum_0_e + 99999 u_0_e <= 99999
+
+_C490: - pesum_0_e + source.0_target.e_move.0_tree.22 = 0
+
+_C491: pesum_a_e + 99999 u_a_e <= 99999
+
+_C492: - pesum_a_e + source.a_target.e_move.0_tree.22 = 0
+
+_C493: pesum_j_23 + 99999 u_j_23 <= 99999
+
+_C494: - pesum_j_23 + source.j_target.23_move.0_tree.22 = 0
+
+_C495: pesum_a_ROOT_ + 99999 u_a_ROOT_ <= 99999
+
+_C496: - pesum_a_ROOT_ + source.a_target.ROOT__move.0_tree.23 = 0
+
+_C497: pesum_23_0 + 99999 u_23_0 <= 99999
+
+_C498: - pesum_23_0 + source.23_target.0_move.0_tree.23
+ + source.23_target.0_move.0_tree.26 = 0
+
+_C499: pesum_2_i + 99999 u_2_i <= 99999
+
+_C500: - pesum_2_i + source.2_target.i_move.0_tree.24 = 0
+
+_C501: pesum_12_b + 99999 u_12_b <= 99999
+
+_C502: - pesum_12_b + source.12_target.b_move.0_tree.24 = 0
+
+_C503: pesum_f_d + 99999 u_f_d <= 99999
+
+_C504: - pesum_f_d + source.f_target.d_move.0_tree.25
+ + source.f_target.d_move.1_tree.25 = 0
+
+_C505: pesum_23_28_dd + 99999 u_23_28_dd <= 99999
+
+_C506: - pesum_23_28_dd + source.23_target.28_dd_move.0_tree.25
+ + source.23_target.28_dd_move.1_tree.25 = 0
+
+_C507: pesum_16_23 + 99999 u_16_23 <= 99999
+
+_C508: - pesum_16_23 + source.16_target.23_move.0_tree.26 = 0
+
+_C509: pesum_0_f + 99999 u_0_f <= 99999
+
+_C510: - pesum_0_f + source.0_target.f_move.0_tree.27 = 0
+
+_C511: pesum_b_6_dd7 + 99999 u_b_6_dd7 <= 99999
+
+_C512: - pesum_b_6_dd7 + source.b_target.6_dd7_move.0_tree.27 = 0
+
+_C513: pesum_l_j + 99999 u_l_j <= 99999
+
+_C514: - pesum_l_j + source.l_target.j_move.0_tree.28
+ + source.l_target.j_move.0_tree.29 = 0
+
+_C515: pesum_9_i + 99999 u_9_i <= 99999
+
+_C516: - pesum_9_i + source.9_target.i_move.0_tree.29 = 0
+
+_C517: pesum_18_m + 99999 u_18_m <= 99999
+
+_C518: - pesum_18_m + source.18_target.m_move.0_tree.29 = 0
+
+_C519: pesum_m_1 + 99999 u_m_1 <= 99999
+
+_C520: - pesum_m_1 + source.m_target.1_move.0_tree.29 = 0
+
+VARIABLES
+0 <= b_p0_tree.0.1 <= 1 Integer
+0 <= b_p0_tree.0.2 <= 1 Integer
+0 <= b_p0_tree.1.1 <= 1 Integer
+0 <= b_p0_tree.1.2 <= 1 Integer
+0 <= b_p0_tree.10.1 <= 1 Integer
+0 <= b_p0_tree.10.2 <= 1 Integer
+0 <= b_p0_tree.11.1 <= 1 Integer
+0 <= b_p0_tree.11.2 <= 1 Integer
+0 <= b_p0_tree.12.1 <= 1 Integer
+0 <= b_p0_tree.12.2 <= 1 Integer
+0 <= b_p0_tree.13.1 <= 1 Integer
+0 <= b_p0_tree.13.2 <= 1 Integer
+0 <= b_p0_tree.14.1 <= 1 Integer
+0 <= b_p0_tree.14.2 <= 1 Integer
+0 <= b_p0_tree.15.1 <= 1 Integer
+0 <= b_p0_tree.15.2 <= 1 Integer
+0 <= b_p0_tree.16.1 <= 1 Integer
+0 <= b_p0_tree.16.2 <= 1 Integer
+0 <= b_p0_tree.17.1 <= 1 Integer
+0 <= b_p0_tree.17.2 <= 1 Integer
+0 <= b_p0_tree.18.1 <= 1 Integer
+0 <= b_p0_tree.18.2 <= 1 Integer
+0 <= b_p0_tree.19.1 <= 1 Integer
+0 <= b_p0_tree.19.2 <= 1 Integer
+0 <= b_p0_tree.2.1 <= 1 Integer
+0 <= b_p0_tree.2.2 <= 1 Integer
+0 <= b_p0_tree.20.1 <= 1 Integer
+0 <= b_p0_tree.20.2 <= 1 Integer
+0 <= b_p0_tree.21.1 <= 1 Integer
+0 <= b_p0_tree.21.2 <= 1 Integer
+0 <= b_p0_tree.22.1 <= 1 Integer
+0 <= b_p0_tree.22.2 <= 1 Integer
+0 <= b_p0_tree.23.1 <= 1 Integer
+0 <= b_p0_tree.23.2 <= 1 Integer
+0 <= b_p0_tree.24.1 <= 1 Integer
+0 <= b_p0_tree.24.2 <= 1 Integer
+0 <= b_p0_tree.25.1 <= 1 Integer
+0 <= b_p0_tree.25.2 <= 1 Integer
+0 <= b_p0_tree.26.1 <= 1 Integer
+0 <= b_p0_tree.26.2 <= 1 Integer
+0 <= b_p0_tree.27.1 <= 1 Integer
+0 <= b_p0_tree.27.2 <= 1 Integer
+0 <= b_p0_tree.28.1 <= 1 Integer
+0 <= b_p0_tree.28.2 <= 1 Integer
+0 <= b_p0_tree.29.1 <= 1 Integer
+0 <= b_p0_tree.29.2 <= 1 Integer
+0 <= b_p0_tree.3.1 <= 1 Integer
+0 <= b_p0_tree.3.2 <= 1 Integer
+0 <= b_p0_tree.4.1 <= 1 Integer
+0 <= b_p0_tree.4.2 <= 1 Integer
+0 <= b_p0_tree.5.1 <= 1 Integer
+0 <= b_p0_tree.5.2 <= 1 Integer
+0 <= b_p0_tree.6.1 <= 1 Integer
+0 <= b_p0_tree.6.2 <= 1 Integer
+0 <= b_p0_tree.7.1 <= 1 Integer
+0 <= b_p0_tree.7.2 <= 1 Integer
+0 <= b_p0_tree.8.1 <= 1 Integer
+0 <= b_p0_tree.8.2 <= 1 Integer
+0 <= b_p0_tree.9.1 <= 1 Integer
+0 <= b_p0_tree.9.2 <= 1 Integer
+0 <= b_p1_tree.0.1 <= 1 Integer
+0 <= b_p1_tree.0.2 <= 1 Integer
+0 <= b_p1_tree.1.1 <= 1 Integer
+0 <= b_p1_tree.1.2 <= 1 Integer
+0 <= b_p1_tree.12.1 <= 1 Integer
+0 <= b_p1_tree.12.2 <= 1 Integer
+0 <= b_p1_tree.15.1 <= 1 Integer
+0 <= b_p1_tree.15.2 <= 1 Integer
+0 <= b_p1_tree.17.1 <= 1 Integer
+0 <= b_p1_tree.17.2 <= 1 Integer
+0 <= b_p1_tree.2.1 <= 1 Integer
+0 <= b_p1_tree.2.2 <= 1 Integer
+0 <= b_p1_tree.21.1 <= 1 Integer
+0 <= b_p1_tree.21.2 <= 1 Integer
+0 <= b_p1_tree.25.1 <= 1 Integer
+0 <= b_p1_tree.25.2 <= 1 Integer
+0 <= b_p1_tree.3.1 <= 1 Integer
+0 <= b_p1_tree.3.2 <= 1 Integer
+0 <= b_p1_tree.4.1 <= 1 Integer
+0 <= b_p1_tree.4.2 <= 1 Integer
+0 <= b_p1_tree.5.1 <= 1 Integer
+0 <= b_p1_tree.5.2 <= 1 Integer
+0 <= b_p1_tree.7.1 <= 1 Integer
+0 <= b_p1_tree.7.2 <= 1 Integer
+0 <= b_p1_tree.8.1 <= 1 Integer
+0 <= b_p1_tree.8.2 <= 1 Integer
+0 <= b_p2_tree.2.1 <= 1 Integer
+0 <= b_p2_tree.2.2 <= 1 Integer
+0 <= b_p2_tree.21.1 <= 1 Integer
+0 <= b_p2_tree.21.2 <= 1 Integer
+0 <= b_p2_tree.3.1 <= 1 Integer
+0 <= b_p2_tree.3.2 <= 1 Integer
+0 <= b_p2_tree.5.1 <= 1 Integer
+0 <= b_p2_tree.5.2 <= 1 Integer
+0 <= b_p2_tree.8.1 <= 1 Integer
+0 <= b_p2_tree.8.2 <= 1 Integer
+0 <= b_p3_tree.21.1 <= 1 Integer
+0 <= b_p3_tree.21.2 <= 1 Integer
+0 <= b_p3_tree.3.1 <= 1 Integer
+0 <= b_p3_tree.3.2 <= 1 Integer
+0 <= b_p3_tree.8.1 <= 1 Integer
+0 <= b_p3_tree.8.2 <= 1 Integer
+0 <= b_p4_tree.21.1 <= 1 Integer
+0 <= b_p4_tree.21.2 <= 1 Integer
+0 <= b_p4_tree.3.1 <= 1 Integer
+0 <= b_p4_tree.3.2 <= 1 Integer
+0 <= b_p5_tree.21.1 <= 1 Integer
+0 <= b_p5_tree.21.2 <= 1 Integer
+0 <= pesum_0_12 <= 9999 Integer
+0 <= pesum_0_13 <= 9999 Integer
+0 <= pesum_0_9 <= 9999 Integer
+0 <= pesum_0_b <= 9999 Integer
+0 <= pesum_0_e <= 9999 Integer
+0 <= pesum_0_f <= 9999 Integer
+0 <= pesum_11_0 <= 9999 Integer
+0 <= pesum_11_1 <= 9999 Integer
+0 <= pesum_11_dd_22 <= 9999 Integer
+0 <= pesum_11_dd_j <= 9999 Integer
+0 <= pesum_11_i <= 9999 Integer
+0 <= pesum_12_0 <= 9999 Integer
+0 <= pesum_12_1 <= 9999 Integer
+0 <= pesum_12_b <= 9999 Integer
+0 <= pesum_12_c <= 9999 Integer
+0 <= pesum_12_i <= 9999 Integer
+0 <= pesum_13_8 <= 9999 Integer
+0 <= pesum_13_d <= 9999 Integer
+0 <= pesum_13_e <= 9999 Integer
+0 <= pesum_13_h <= 9999 Integer
+0 <= pesum_16_23 <= 9999 Integer
+0 <= pesum_16_9 <= 9999 Integer
+0 <= pesum_18_0 <= 9999 Integer
+0 <= pesum_18_22 <= 9999 Integer
+0 <= pesum_18_22_dd <= 9999 Integer
+0 <= pesum_18_28 <= 9999 Integer
+0 <= pesum_18_28_dd <= 9999 Integer
+0 <= pesum_18_d <= 9999 Integer
+0 <= pesum_18_k <= 9999 Integer
+0 <= pesum_18_m <= 9999 Integer
+0 <= pesum_1_12 <= 9999 Integer
+0 <= pesum_1_6_dd7 <= 9999 Integer
+0 <= pesum_1_9_dd7 <= 9999 Integer
+0 <= pesum_1_d <= 9999 Integer
+0 <= pesum_1_dd7_b <= 9999 Integer
+0 <= pesum_1_e <= 9999 Integer
+0 <= pesum_22_11 <= 9999 Integer
+0 <= pesum_22_12 <= 9999 Integer
+0 <= pesum_23_0 <= 9999 Integer
+0 <= pesum_23_1 <= 9999 Integer
+0 <= pesum_23_11 <= 9999 Integer
+0 <= pesum_23_16 <= 9999 Integer
+0 <= pesum_23_28_dd <= 9999 Integer
+0 <= pesum_23_j <= 9999 Integer
+0 <= pesum_23_m <= 9999 Integer
+0 <= pesum_25_0 <= 9999 Integer
+0 <= pesum_25_18 <= 9999 Integer
+0 <= pesum_28_n <= 9999 Integer
+0 <= pesum_2_12 <= 9999 Integer
+0 <= pesum_2_d <= 9999 Integer
+0 <= pesum_2_i <= 9999 Integer
+0 <= pesum_6_b <= 9999 Integer
+0 <= pesum_6_c <= 9999 Integer
+0 <= pesum_6_dd7_11_dd <= 9999 Integer
+0 <= pesum_6_dd7_c <= 9999 Integer
+0 <= pesum_6_dd7_f <= 9999 Integer
+0 <= pesum_8_0 <= 9999 Integer
+0 <= pesum_8_j <= 9999 Integer
+0 <= pesum_9_13 <= 9999 Integer
+0 <= pesum_9_dd7_0 <= 9999 Integer
+0 <= pesum_9_dd7_d <= 9999 Integer
+0 <= pesum_9_f <= 9999 Integer
+0 <= pesum_9_i <= 9999 Integer
+0 <= pesum_a_0 <= 9999 Integer
+0 <= pesum_a_13 <= 9999 Integer
+0 <= pesum_a_6 <= 9999 Integer
+0 <= pesum_a_9 <= 9999 Integer
+0 <= pesum_a_9_dd7 <= 9999 Integer
+0 <= pesum_a_ROOT_ <= 9999 Integer
+0 <= pesum_a_d <= 9999 Integer
+0 <= pesum_a_e <= 9999 Integer
+0 <= pesum_b_6_dd7 <= 9999 Integer
+0 <= pesum_c_9_dd7 <= 9999 Integer
+0 <= pesum_c_b <= 9999 Integer
+0 <= pesum_c_d <= 9999 Integer
+0 <= pesum_d_13_dd <= 9999 Integer
+0 <= pesum_d_b <= 9999 Integer
+0 <= pesum_d_c <= 9999 Integer
+0 <= pesum_d_e <= 9999 Integer
+0 <= pesum_e_13 <= 9999 Integer
+0 <= pesum_e_d <= 9999 Integer
+0 <= pesum_e_f <= 9999 Integer
+0 <= pesum_f_b <= 9999 Integer
+0 <= pesum_f_c <= 9999 Integer
+0 <= pesum_f_d <= 9999 Integer
+0 <= pesum_f_e <= 9999 Integer
+0 <= pesum_g_h <= 9999 Integer
+0 <= pesum_h_g <= 9999 Integer
+0 <= pesum_h_i <= 9999 Integer
+0 <= pesum_j_11 <= 9999 Integer
+0 <= pesum_j_12 <= 9999 Integer
+0 <= pesum_j_23 <= 9999 Integer
+0 <= pesum_j_23_dd <= 9999 Integer
+0 <= pesum_j_6 <= 9999 Integer
+0 <= pesum_j_k <= 9999 Integer
+0 <= pesum_k_16 <= 9999 Integer
+0 <= pesum_k_23 <= 9999 Integer
+0 <= pesum_k_j <= 9999 Integer
+0 <= pesum_k_l <= 9999 Integer
+0 <= pesum_l_18 <= 9999 Integer
+0 <= pesum_l_j <= 9999 Integer
+0 <= pesum_l_k <= 9999 Integer
+0 <= pesum_l_m <= 9999 Integer
+0 <= pesum_m_0 <= 9999 Integer
+0 <= pesum_m_1 <= 9999 Integer
+0 <= pesum_n_28 <= 9999 Integer
+0 <= pesum_n_o <= 9999 Integer
+0 <= pesum_o_25 <= 9999 Integer
+0 <= pesum_o_n <= 9999 Integer
+0 <= pesum_p_n <= 9999 Integer
+0 <= source.0_target.12_move.0_tree.5 <= 1 Integer
+0 <= source.0_target.13_move.0_tree.24 <= 1 Integer
+0 <= source.0_target.13_move.0_tree.8 <= 1 Integer
+0 <= source.0_target.13_move.1_tree.8 <= 1 Integer
+0 <= source.0_target.13_move.2_tree.8 <= 1 Integer
+0 <= source.0_target.13_move.3_tree.8 <= 1 Integer
+0 <= source.0_target.9_move.0_tree.6 <= 1 Integer
+0 <= source.0_target.b_move.0_tree.7 <= 1 Integer
+0 <= source.0_target.b_move.1_tree.7 <= 1 Integer
+0 <= source.0_target.e_move.0_tree.22 <= 1 Integer
+0 <= source.0_target.f_move.0_tree.27 <= 1 Integer
+0 <= source.11_dd_target.22_move.0_tree.9 <= 1 Integer
+0 <= source.11_dd_target.j_move.0_tree.15 <= 1 Integer
+0 <= source.11_dd_target.j_move.1_tree.15 <= 1 Integer
+0 <= source.11_target.0_move.0_tree.27 <= 1 Integer
+0 <= source.11_target.0_move.0_tree.5 <= 1 Integer
+0 <= source.11_target.0_move.0_tree.7 <= 1 Integer
+0 <= source.11_target.0_move.0_tree.8 <= 1 Integer
+0 <= source.11_target.0_move.1_tree.5 <= 1 Integer
+0 <= source.11_target.0_move.1_tree.7 <= 1 Integer
+0 <= source.11_target.0_move.2_tree.5 <= 1 Integer
+0 <= source.11_target.0_move.2_tree.8 <= 1 Integer
+0 <= source.11_target.1_move.0_tree.1 <= 1 Integer
+0 <= source.11_target.1_move.0_tree.17 <= 1 Integer
+0 <= source.11_target.i_move.0_tree.21 <= 1 Integer
+0 <= source.11_target.i_move.1_tree.21 <= 1 Integer
+0 <= source.11_target.i_move.3_tree.21 <= 1 Integer
+0 <= source.11_target.i_move.4_tree.21 <= 1 Integer
+0 <= source.12_target.0_move.1_tree.8 <= 1 Integer
+0 <= source.12_target.0_move.3_tree.8 <= 1 Integer
+0 <= source.12_target.1_move.1_tree.1 <= 1 Integer
+0 <= source.12_target.1_move.1_tree.17 <= 1 Integer
+0 <= source.12_target.b_move.0_tree.24 <= 1 Integer
+0 <= source.12_target.c_move.0_tree.0 <= 1 Integer
+0 <= source.12_target.c_move.1_tree.0 <= 1 Integer
+0 <= source.12_target.i_move.0_tree.13 <= 1 Integer
+0 <= source.12_target.i_move.2_tree.21 <= 1 Integer
+0 <= source.12_target.i_move.5_tree.21 <= 1 Integer
+0 <= source.13_target.8_move.0_tree.10 <= 1 Integer
+0 <= source.13_target.d_move.0_tree.16 <= 1 Integer
+0 <= source.13_target.d_move.0_tree.4 <= 1 Integer
+0 <= source.13_target.d_move.1_tree.4 <= 1 Integer
+0 <= source.13_target.e_move.0_tree.2 <= 1 Integer
+0 <= source.13_target.e_move.1_tree.2 <= 1 Integer
+0 <= source.13_target.e_move.2_tree.2 <= 1 Integer
+0 <= source.13_target.h_move.0_tree.20 <= 1 Integer
+0 <= source.13_target.h_move.0_tree.22 <= 1 Integer
+0 <= source.13_target.h_move.0_tree.23 <= 1 Integer
+0 <= source.13_target.h_move.0_tree.9 <= 1 Integer
+0 <= source.16_target.23_move.0_tree.26 <= 1 Integer
+0 <= source.16_target.9_move.0_tree.6 <= 1 Integer
+0 <= source.18_target.0_move.0_tree.13 <= 1 Integer
+0 <= source.18_target.0_move.0_tree.24 <= 1 Integer
+0 <= source.18_target.0_move.0_tree.28 <= 1 Integer
+0 <= source.18_target.22_dd_move.1_tree.3 <= 1 Integer
+0 <= source.18_target.22_move.0_tree.3 <= 1 Integer
+0 <= source.18_target.22_move.2_tree.3 <= 1 Integer
+0 <= source.18_target.28_dd_move.4_tree.3 <= 1 Integer
+0 <= source.18_target.28_move.3_tree.3 <= 1 Integer
+0 <= source.18_target.d_move.0_tree.21 <= 1 Integer
+0 <= source.18_target.d_move.1_tree.21 <= 1 Integer
+0 <= source.18_target.d_move.2_tree.21 <= 1 Integer
+0 <= source.18_target.d_move.3_tree.21 <= 1 Integer
+0 <= source.18_target.d_move.4_tree.21 <= 1 Integer
+0 <= source.18_target.d_move.5_tree.21 <= 1 Integer
+0 <= source.18_target.k_move.0_tree.0 <= 1 Integer
+0 <= source.18_target.k_move.1_tree.0 <= 1 Integer
+0 <= source.18_target.m_move.0_tree.29 <= 1 Integer
+0 <= source.1_dd7_target.b_move.0_tree.0 <= 1 Integer
+0 <= source.1_dd7_target.b_move.1_tree.0 <= 1 Integer
+0 <= source.1_target.12_move.1_tree.5 <= 1 Integer
+0 <= source.1_target.6_dd7_move.0_tree.21 <= 1 Integer
+0 <= source.1_target.6_dd7_move.1_tree.21 <= 1 Integer
+0 <= source.1_target.6_dd7_move.2_tree.21 <= 1 Integer
+0 <= source.1_target.6_dd7_move.3_tree.21 <= 1 Integer
+0 <= source.1_target.6_dd7_move.4_tree.21 <= 1 Integer
+0 <= source.1_target.6_dd7_move.5_tree.21 <= 1 Integer
+0 <= source.1_target.9_dd7_move.0_tree.12 <= 1 Integer
+0 <= source.1_target.9_dd7_move.0_tree.14 <= 1 Integer
+0 <= source.1_target.9_dd7_move.1_tree.12 <= 1 Integer
+0 <= source.1_target.d_move.0_tree.11 <= 1 Integer
+0 <= source.1_target.d_move.0_tree.16 <= 1 Integer
+0 <= source.1_target.d_move.0_tree.20 <= 1 Integer
+0 <= source.1_target.d_move.0_tree.4 <= 1 Integer
+0 <= source.1_target.e_move.0_tree.15 <= 1 Integer
+0 <= source.1_target.e_move.1_tree.15 <= 1 Integer
+0 <= source.22_target.11_move.0_tree.2 <= 1 Integer
+0 <= source.22_target.12_move.0_tree.11 <= 1 Integer
+0 <= source.23_target.0_move.0_tree.23 <= 1 Integer
+0 <= source.23_target.0_move.0_tree.26 <= 1 Integer
+0 <= source.23_target.11_move.1_tree.2 <= 1 Integer
+0 <= source.23_target.11_move.2_tree.2 <= 1 Integer
+0 <= source.23_target.16_move.0_tree.17 <= 1 Integer
+0 <= source.23_target.16_move.1_tree.17 <= 1 Integer
+0 <= source.23_target.1_move.0_tree.1 <= 1 Integer
+0 <= source.23_target.1_move.1_tree.1 <= 1 Integer
+0 <= source.23_target.28_dd_move.0_tree.25 <= 1 Integer
+0 <= source.23_target.28_dd_move.1_tree.25 <= 1 Integer
+0 <= source.23_target.j_move.0_tree.3 <= 1 Integer
+0 <= source.23_target.j_move.1_tree.3 <= 1 Integer
+0 <= source.23_target.j_move.2_tree.3 <= 1 Integer
+0 <= source.23_target.j_move.3_tree.3 <= 1 Integer
+0 <= source.23_target.j_move.4_tree.3 <= 1 Integer
+0 <= source.23_target.m_move.0_tree.8 <= 1 Integer
+0 <= source.23_target.m_move.1_tree.8 <= 1 Integer
+0 <= source.25_target.0_move.0_tree.0 <= 1 Integer
+0 <= source.25_target.0_move.0_tree.10 <= 1 Integer
+0 <= source.25_target.18_move.0_tree.8 <= 1 Integer
+0 <= source.25_target.18_move.1_tree.8 <= 1 Integer
+0 <= source.25_target.18_move.2_tree.8 <= 1 Integer
+0 <= source.25_target.18_move.3_tree.8 <= 1 Integer
+0 <= source.28_target.n_move.0_tree.15 <= 1 Integer
+0 <= source.28_target.n_move.0_tree.2 <= 1 Integer
+0 <= source.28_target.n_move.0_tree.21 <= 1 Integer
+0 <= source.28_target.n_move.1_tree.2 <= 1 Integer
+0 <= source.28_target.n_move.1_tree.21 <= 1 Integer
+0 <= source.28_target.n_move.2_tree.21 <= 1 Integer
+0 <= source.2_target.12_move.0_tree.7 <= 1 Integer
+0 <= source.2_target.12_move.1_tree.7 <= 1 Integer
+0 <= source.2_target.12_move.2_tree.5 <= 1 Integer
+0 <= source.2_target.d_move.1_tree.4 <= 1 Integer
+0 <= source.2_target.i_move.0_tree.24 <= 1 Integer
+0 <= source.6_dd7_target.11_dd_move.0_tree.19 <= 1 Integer
+0 <= source.6_dd7_target.c_move.0_tree.25 <= 1 Integer
+0 <= source.6_dd7_target.c_move.0_tree.3 <= 1 Integer
+0 <= source.6_dd7_target.c_move.1_tree.25 <= 1 Integer
+0 <= source.6_dd7_target.c_move.1_tree.3 <= 1 Integer
+0 <= source.6_dd7_target.c_move.2_tree.3 <= 1 Integer
+0 <= source.6_dd7_target.c_move.3_tree.3 <= 1 Integer
+0 <= source.6_dd7_target.c_move.4_tree.3 <= 1 Integer
+0 <= source.6_dd7_target.f_move.0_tree.10 <= 1 Integer
+0 <= source.6_target.b_move.0_tree.5 <= 1 Integer
+0 <= source.6_target.b_move.1_tree.5 <= 1 Integer
+0 <= source.6_target.b_move.2_tree.5 <= 1 Integer
+0 <= source.6_target.c_move.0_tree.1 <= 1 Integer
+0 <= source.6_target.c_move.0_tree.17 <= 1 Integer
+0 <= source.6_target.c_move.1_tree.1 <= 1 Integer
+0 <= source.6_target.c_move.1_tree.17 <= 1 Integer
+0 <= source.8_target.0_move.0_tree.22 <= 1 Integer
+0 <= source.8_target.0_move.0_tree.6 <= 1 Integer
+0 <= source.8_target.j_move.0_tree.13 <= 1 Integer
+0 <= source.8_target.j_move.0_tree.24 <= 1 Integer
+0 <= source.9_dd7_target.0_move.0_tree.13 <= 1 Integer
+0 <= source.9_dd7_target.d_move.0_tree.19 <= 1 Integer
+0 <= source.9_target.13_move.0_tree.7 <= 1 Integer
+0 <= source.9_target.f_move.0_tree.21 <= 1 Integer
+0 <= source.9_target.f_move.3_tree.21 <= 1 Integer
+0 <= source.9_target.i_move.0_tree.29 <= 1 Integer
+0 <= source.a_target.0_move.0_tree.3 <= 1 Integer
+0 <= source.a_target.0_move.1_tree.3 <= 1 Integer
+0 <= source.a_target.0_move.2_tree.3 <= 1 Integer
+0 <= source.a_target.0_move.3_tree.3 <= 1 Integer
+0 <= source.a_target.0_move.4_tree.3 <= 1 Integer
+0 <= source.a_target.13_move.0_tree.8 <= 1 Integer
+0 <= source.a_target.13_move.1_tree.8 <= 1 Integer
+0 <= source.a_target.13_move.2_tree.8 <= 1 Integer
+0 <= source.a_target.13_move.3_tree.8 <= 1 Integer
+0 <= source.a_target.6_move.0_tree.16 <= 1 Integer
+0 <= source.a_target.9_dd7_move.0_tree.12 <= 1 Integer
+0 <= source.a_target.9_dd7_move.1_tree.12 <= 1 Integer
+0 <= source.a_target.9_move.0_tree.14 <= 1 Integer
+0 <= source.a_target.9_move.0_tree.6 <= 1 Integer
+0 <= source.a_target.ROOT__move.0_tree.23 <= 1 Integer
+0 <= source.a_target.d_move.0_tree.20 <= 1 Integer
+0 <= source.a_target.e_move.0_tree.22 <= 1 Integer
+0 <= source.b_target.6_dd7_move.0_tree.27 <= 1 Integer
+0 <= source.c_target.9_dd7_move.0_tree.18 <= 1 Integer
+0 <= source.c_target.b_move.0_tree.13 <= 1 Integer
+0 <= source.c_target.b_move.0_tree.4 <= 1 Integer
+0 <= source.c_target.b_move.1_tree.4 <= 1 Integer
+0 <= source.c_target.d_move.0_tree.10 <= 1 Integer
+0 <= source.c_target.d_move.0_tree.19 <= 1 Integer
+0 <= source.c_target.d_move.0_tree.26 <= 1 Integer
+0 <= source.c_target.d_move.0_tree.27 <= 1 Integer
+0 <= source.c_target.d_move.0_tree.5 <= 1 Integer
+0 <= source.c_target.d_move.0_tree.9 <= 1 Integer
+0 <= source.c_target.d_move.1_tree.5 <= 1 Integer
+0 <= source.c_target.d_move.2_tree.5 <= 1 Integer
+0 <= source.d_target.13_dd_move.0_tree.0 <= 1 Integer
+0 <= source.d_target.13_dd_move.1_tree.0 <= 1 Integer
+0 <= source.d_target.b_move.0_tree.9 <= 1 Integer
+0 <= source.d_target.c_move.0_tree.15 <= 1 Integer
+0 <= source.d_target.c_move.0_tree.2 <= 1 Integer
+0 <= source.d_target.c_move.0_tree.28 <= 1 Integer
+0 <= source.d_target.c_move.1_tree.15 <= 1 Integer
+0 <= source.d_target.c_move.1_tree.2 <= 1 Integer
+0 <= source.d_target.c_move.2_tree.2 <= 1 Integer
+0 <= source.d_target.e_move.0_tree.12 <= 1 Integer
+0 <= source.d_target.e_move.0_tree.14 <= 1 Integer
+0 <= source.d_target.e_move.0_tree.18 <= 1 Integer
+0 <= source.d_target.e_move.0_tree.29 <= 1 Integer
+0 <= source.d_target.e_move.1_tree.12 <= 1 Integer
+0 <= source.e_target.13_move.1_tree.7 <= 1 Integer
+0 <= source.e_target.d_move.0_tree.10 <= 1 Integer
+0 <= source.e_target.d_move.0_tree.24 <= 1 Integer
+0 <= source.e_target.d_move.0_tree.25 <= 1 Integer
+0 <= source.e_target.d_move.0_tree.3 <= 1 Integer
+0 <= source.e_target.d_move.1_tree.25 <= 1 Integer
+0 <= source.e_target.d_move.1_tree.3 <= 1 Integer
+0 <= source.e_target.d_move.2_tree.3 <= 1 Integer
+0 <= source.e_target.d_move.3_tree.3 <= 1 Integer
+0 <= source.e_target.d_move.4_tree.3 <= 1 Integer
+0 <= source.e_target.f_move.0_tree.0 <= 1 Integer
+0 <= source.e_target.f_move.0_tree.16 <= 1 Integer
+0 <= source.e_target.f_move.0_tree.20 <= 1 Integer
+0 <= source.e_target.f_move.0_tree.23 <= 1 Integer
+0 <= source.e_target.f_move.0_tree.4 <= 1 Integer
+0 <= source.e_target.f_move.1_tree.0 <= 1 Integer
+0 <= source.e_target.f_move.1_tree.21 <= 1 Integer
+0 <= source.e_target.f_move.1_tree.4 <= 1 Integer
+0 <= source.e_target.f_move.2_tree.21 <= 1 Integer
+0 <= source.e_target.f_move.4_tree.21 <= 1 Integer
+0 <= source.e_target.f_move.5_tree.21 <= 1 Integer
+0 <= source.f_target.b_move.0_tree.5 <= 1 Integer
+0 <= source.f_target.b_move.1_tree.5 <= 1 Integer
+0 <= source.f_target.b_move.2_tree.5 <= 1 Integer
+0 <= source.f_target.c_move.0_tree.1 <= 1 Integer
+0 <= source.f_target.c_move.1_tree.1 <= 1 Integer
+0 <= source.f_target.d_move.0_tree.25 <= 1 Integer
+0 <= source.f_target.d_move.1_tree.25 <= 1 Integer
+0 <= source.f_target.e_move.0_tree.12 <= 1 Integer
+0 <= source.f_target.e_move.0_tree.13 <= 1 Integer
+0 <= source.f_target.e_move.0_tree.19 <= 1 Integer
+0 <= source.f_target.e_move.0_tree.28 <= 1 Integer
+0 <= source.f_target.e_move.1_tree.12 <= 1 Integer
+0 <= source.g_target.h_move.0_tree.15 <= 1 Integer
+0 <= source.g_target.h_move.0_tree.18 <= 1 Integer
+0 <= source.g_target.h_move.0_tree.26 <= 1 Integer
+0 <= source.g_target.h_move.0_tree.6 <= 1 Integer
+0 <= source.g_target.h_move.1_tree.15 <= 1 Integer
+0 <= source.h_target.g_move.0_tree.14 <= 1 Integer
+0 <= source.h_target.i_move.0_tree.15 <= 1 Integer
+0 <= source.h_target.i_move.1_tree.15 <= 1 Integer
+0 <= source.j_target.11_move.0_tree.12 <= 1 Integer
+0 <= source.j_target.11_move.0_tree.25 <= 1 Integer
+0 <= source.j_target.12_move.0_tree.19 <= 1 Integer
+0 <= source.j_target.12_move.1_tree.12 <= 1 Integer
+0 <= source.j_target.12_move.1_tree.25 <= 1 Integer
+0 <= source.j_target.23_dd_move.0_tree.17 <= 1 Integer
+0 <= source.j_target.23_dd_move.1_tree.17 <= 1 Integer
+0 <= source.j_target.23_move.0_tree.22 <= 1 Integer
+0 <= source.j_target.6_move.0_tree.20 <= 1 Integer
+0 <= source.j_target.k_move.0_tree.1 <= 1 Integer
+0 <= source.j_target.k_move.0_tree.10 <= 1 Integer
+0 <= source.j_target.k_move.0_tree.11 <= 1 Integer
+0 <= source.j_target.k_move.0_tree.16 <= 1 Integer
+0 <= source.j_target.k_move.0_tree.18 <= 1 Integer
+0 <= source.j_target.k_move.0_tree.27 <= 1 Integer
+0 <= source.j_target.k_move.0_tree.7 <= 1 Integer
+0 <= source.j_target.k_move.0_tree.9 <= 1 Integer
+0 <= source.j_target.k_move.1_tree.1 <= 1 Integer
+0 <= source.j_target.k_move.1_tree.7 <= 1 Integer
+0 <= source.k_target.16_move.0_tree.1 <= 1 Integer
+0 <= source.k_target.16_move.0_tree.11 <= 1 Integer
+0 <= source.k_target.16_move.1_tree.1 <= 1 Integer
+0 <= source.k_target.23_move.0_tree.25 <= 1 Integer
+0 <= source.k_target.23_move.0_tree.3 <= 1 Integer
+0 <= source.k_target.23_move.1_tree.25 <= 1 Integer
+0 <= source.k_target.23_move.1_tree.3 <= 1 Integer
+0 <= source.k_target.23_move.2_tree.3 <= 1 Integer
+0 <= source.k_target.23_move.3_tree.3 <= 1 Integer
+0 <= source.k_target.23_move.4_tree.3 <= 1 Integer
+0 <= source.k_target.j_move.0_tree.29 <= 1 Integer
+0 <= source.k_target.j_move.0_tree.4 <= 1 Integer
+0 <= source.k_target.j_move.0_tree.8 <= 1 Integer
+0 <= source.k_target.j_move.1_tree.4 <= 1 Integer
+0 <= source.k_target.j_move.1_tree.8 <= 1 Integer
+0 <= source.k_target.j_move.2_tree.8 <= 1 Integer
+0 <= source.k_target.j_move.3_tree.8 <= 1 Integer
+0 <= source.k_target.l_move.0_tree.12 <= 1 Integer
+0 <= source.k_target.l_move.0_tree.14 <= 1 Integer
+0 <= source.k_target.l_move.0_tree.17 <= 1 Integer
+0 <= source.k_target.l_move.0_tree.18 <= 1 Integer
+0 <= source.k_target.l_move.0_tree.21 <= 1 Integer
+0 <= source.k_target.l_move.0_tree.22 <= 1 Integer
+0 <= source.k_target.l_move.0_tree.23 <= 1 Integer
+0 <= source.k_target.l_move.0_tree.26 <= 1 Integer
+0 <= source.k_target.l_move.0_tree.28 <= 1 Integer
+0 <= source.k_target.l_move.0_tree.6 <= 1 Integer
+0 <= source.k_target.l_move.1_tree.12 <= 1 Integer
+0 <= source.k_target.l_move.1_tree.17 <= 1 Integer
+0 <= source.k_target.l_move.1_tree.21 <= 1 Integer
+0 <= source.k_target.l_move.2_tree.21 <= 1 Integer
+0 <= source.k_target.l_move.3_tree.21 <= 1 Integer
+0 <= source.k_target.l_move.4_tree.21 <= 1 Integer
+0 <= source.k_target.l_move.5_tree.21 <= 1 Integer
+0 <= source.l_target.18_move.0_tree.4 <= 1 Integer
+0 <= source.l_target.18_move.1_tree.4 <= 1 Integer
+0 <= source.l_target.j_move.0_tree.28 <= 1 Integer
+0 <= source.l_target.j_move.0_tree.29 <= 1 Integer
+0 <= source.l_target.k_move.0_tree.15 <= 1 Integer
+0 <= source.l_target.k_move.0_tree.9 <= 1 Integer
+0 <= source.l_target.k_move.1_tree.15 <= 1 Integer
+0 <= source.l_target.m_move.2_tree.8 <= 1 Integer
+0 <= source.l_target.m_move.3_tree.8 <= 1 Integer
+0 <= source.m_target.0_move.1_tree.0 <= 1 Integer
+0 <= source.m_target.1_move.0_tree.29 <= 1 Integer
+0 <= source.n_target.28_move.0_tree.3 <= 1 Integer
+0 <= source.n_target.28_move.1_tree.3 <= 1 Integer
+0 <= source.n_target.o_move.0_tree.11 <= 1 Integer
+0 <= source.n_target.o_move.0_tree.25 <= 1 Integer
+0 <= source.n_target.o_move.1_tree.25 <= 1 Integer
+0 <= source.n_target.o_move.2_tree.3 <= 1 Integer
+0 <= source.n_target.o_move.3_tree.3 <= 1 Integer
+0 <= source.n_target.o_move.4_tree.3 <= 1 Integer
+0 <= source.o_target.25_move.0_tree.12 <= 1 Integer
+0 <= source.o_target.25_move.1_tree.12 <= 1 Integer
+0 <= source.o_target.n_move.1_tree.15 <= 1 Integer
+0 <= source.o_target.n_move.2_tree.2 <= 1 Integer
+0 <= source.o_target.n_move.3_tree.21 <= 1 Integer
+0 <= source.o_target.n_move.4_tree.21 <= 1 Integer
+0 <= source.o_target.n_move.5_tree.21 <= 1 Integer
+0 <= source.p_target.n_move.0_tree.2 <= 1 Integer
+0 <= source.p_target.n_move.1_tree.2 <= 1 Integer
+0 <= source.p_target.n_move.2_tree.2 <= 1 Integer
+0 <= u_0_12 <= 1 Integer
+0 <= u_0_13 <= 1 Integer
+0 <= u_0_9 <= 1 Integer
+0 <= u_0_b <= 1 Integer
+0 <= u_0_e <= 1 Integer
+0 <= u_0_f <= 1 Integer
+0 <= u_11_0 <= 1 Integer
+0 <= u_11_1 <= 1 Integer
+0 <= u_11_dd_22 <= 1 Integer
+0 <= u_11_dd_j <= 1 Integer
+0 <= u_11_i <= 1 Integer
+0 <= u_12_0 <= 1 Integer
+0 <= u_12_1 <= 1 Integer
+0 <= u_12_b <= 1 Integer
+0 <= u_12_c <= 1 Integer
+0 <= u_12_i <= 1 Integer
+0 <= u_13_8 <= 1 Integer
+0 <= u_13_d <= 1 Integer
+0 <= u_13_e <= 1 Integer
+0 <= u_13_h <= 1 Integer
+0 <= u_16_23 <= 1 Integer
+0 <= u_16_9 <= 1 Integer
+0 <= u_18_0 <= 1 Integer
+0 <= u_18_22 <= 1 Integer
+0 <= u_18_22_dd <= 1 Integer
+0 <= u_18_28 <= 1 Integer
+0 <= u_18_28_dd <= 1 Integer
+0 <= u_18_d <= 1 Integer
+0 <= u_18_k <= 1 Integer
+0 <= u_18_m <= 1 Integer
+0 <= u_1_12 <= 1 Integer
+0 <= u_1_6_dd7 <= 1 Integer
+0 <= u_1_9_dd7 <= 1 Integer
+0 <= u_1_d <= 1 Integer
+0 <= u_1_dd7_b <= 1 Integer
+0 <= u_1_e <= 1 Integer
+0 <= u_22_11 <= 1 Integer
+0 <= u_22_12 <= 1 Integer
+0 <= u_23_0 <= 1 Integer
+0 <= u_23_1 <= 1 Integer
+0 <= u_23_11 <= 1 Integer
+0 <= u_23_16 <= 1 Integer
+0 <= u_23_28_dd <= 1 Integer
+0 <= u_23_j <= 1 Integer
+0 <= u_23_m <= 1 Integer
+0 <= u_25_0 <= 1 Integer
+0 <= u_25_18 <= 1 Integer
+0 <= u_28_n <= 1 Integer
+0 <= u_2_12 <= 1 Integer
+0 <= u_2_d <= 1 Integer
+0 <= u_2_i <= 1 Integer
+0 <= u_6_b <= 1 Integer
+0 <= u_6_c <= 1 Integer
+0 <= u_6_dd7_11_dd <= 1 Integer
+0 <= u_6_dd7_c <= 1 Integer
+0 <= u_6_dd7_f <= 1 Integer
+0 <= u_8_0 <= 1 Integer
+0 <= u_8_j <= 1 Integer
+0 <= u_9_13 <= 1 Integer
+0 <= u_9_dd7_0 <= 1 Integer
+0 <= u_9_dd7_d <= 1 Integer
+0 <= u_9_f <= 1 Integer
+0 <= u_9_i <= 1 Integer
+0 <= u_a_0 <= 1 Integer
+0 <= u_a_13 <= 1 Integer
+0 <= u_a_6 <= 1 Integer
+0 <= u_a_9 <= 1 Integer
+0 <= u_a_9_dd7 <= 1 Integer
+0 <= u_a_ROOT_ <= 1 Integer
+0 <= u_a_d <= 1 Integer
+0 <= u_a_e <= 1 Integer
+0 <= u_b_6_dd7 <= 1 Integer
+0 <= u_c_9_dd7 <= 1 Integer
+0 <= u_c_b <= 1 Integer
+0 <= u_c_d <= 1 Integer
+0 <= u_d_13_dd <= 1 Integer
+0 <= u_d_b <= 1 Integer
+0 <= u_d_c <= 1 Integer
+0 <= u_d_e <= 1 Integer
+0 <= u_e_13 <= 1 Integer
+0 <= u_e_d <= 1 Integer
+0 <= u_e_f <= 1 Integer
+0 <= u_f_b <= 1 Integer
+0 <= u_f_c <= 1 Integer
+0 <= u_f_d <= 1 Integer
+0 <= u_f_e <= 1 Integer
+0 <= u_g_h <= 1 Integer
+0 <= u_h_g <= 1 Integer
+0 <= u_h_i <= 1 Integer
+0 <= u_j_11 <= 1 Integer
+0 <= u_j_12 <= 1 Integer
+0 <= u_j_23 <= 1 Integer
+0 <= u_j_23_dd <= 1 Integer
+0 <= u_j_6 <= 1 Integer
+0 <= u_j_k <= 1 Integer
+0 <= u_k_16 <= 1 Integer
+0 <= u_k_23 <= 1 Integer
+0 <= u_k_j <= 1 Integer
+0 <= u_k_l <= 1 Integer
+0 <= u_l_18 <= 1 Integer
+0 <= u_l_j <= 1 Integer
+0 <= u_l_k <= 1 Integer
+0 <= u_l_m <= 1 Integer
+0 <= u_m_0 <= 1 Integer
+0 <= u_m_1 <= 1 Integer
+0 <= u_n_28 <= 1 Integer
+0 <= u_n_o <= 1 Integer
+0 <= u_o_25 <= 1 Integer
+0 <= u_o_n <= 1 Integer
+0 <= u_p_n <= 1 Integer
+0 <= z_p0_tree.0 <= 6 Integer
+0 <= z_p0_tree.1 <= 6 Integer
+0 <= z_p0_tree.10 <= 6 Integer
+0 <= z_p0_tree.11 <= 5 Integer
+0 <= z_p0_tree.12 <= 7 Integer
+0 <= z_p0_tree.13 <= 6 Integer
+0 <= z_p0_tree.14 <= 5 Integer
+0 <= z_p0_tree.15 <= 7 Integer
+0 <= z_p0_tree.16 <= 5 Integer
+0 <= z_p0_tree.17 <= 5 Integer
+0 <= z_p0_tree.18 <= 5 Integer
+0 <= z_p0_tree.19 <= 5 Integer
+0 <= z_p0_tree.2 <= 5 Integer
+0 <= z_p0_tree.20 <= 5 Integer
+0 <= z_p0_tree.21 <= 6 Integer
+0 <= z_p0_tree.22 <= 6 Integer
+0 <= z_p0_tree.23 <= 5 Integer
+0 <= z_p0_tree.24 <= 6 Integer
+0 <= z_p0_tree.25 <= 7 Integer
+0 <= z_p0_tree.26 <= 5 Integer
+0 <= z_p0_tree.27 <= 5 Integer
+0 <= z_p0_tree.28 <= 5 Integer
+0 <= z_p0_tree.29 <= 6 Integer
+0 <= z_p0_tree.3 <= 7 Integer
+0 <= z_p0_tree.4 <= 6 Integer
+0 <= z_p0_tree.5 <= 5 Integer
+0 <= z_p0_tree.6 <= 6 Integer
+0 <= z_p0_tree.7 <= 5 Integer
+0 <= z_p0_tree.8 <= 6 Integer
+0 <= z_p0_tree.9 <= 6 Integer
+0 <= z_p1_tree.0 <= 6 Integer
+0 <= z_p1_tree.1 <= 6 Integer
+0 <= z_p1_tree.12 <= 7 Integer
+0 <= z_p1_tree.15 <= 7 Integer
+0 <= z_p1_tree.17 <= 5 Integer
+0 <= z_p1_tree.2 <= 5 Integer
+0 <= z_p1_tree.21 <= 6 Integer
+0 <= z_p1_tree.25 <= 7 Integer
+0 <= z_p1_tree.3 <= 7 Integer
+0 <= z_p1_tree.4 <= 6 Integer
+0 <= z_p1_tree.5 <= 5 Integer
+0 <= z_p1_tree.7 <= 5 Integer
+0 <= z_p1_tree.8 <= 6 Integer
+0 <= z_p2_tree.2 <= 5 Integer
+0 <= z_p2_tree.21 <= 6 Integer
+0 <= z_p2_tree.3 <= 7 Integer
+0 <= z_p2_tree.5 <= 5 Integer
+0 <= z_p2_tree.8 <= 6 Integer
+0 <= z_p3_tree.21 <= 6 Integer
+0 <= z_p3_tree.3 <= 7 Integer
+0 <= z_p3_tree.8 <= 6 Integer
+0 <= z_p4_tree.21 <= 6 Integer
+0 <= z_p4_tree.3 <= 7 Integer
+0 <= z_p5_tree.21 <= 6 Integer
+
+Optimal
+b_p0_tree.0.1 = 0
+b_p0_tree.0.2 = 1
+b_p0_tree.1.1 = 0
+b_p0_tree.1.2 = 1
+b_p0_tree.10.1 = 0
+b_p0_tree.10.2 = 1
+b_p0_tree.11.1 = 0
+b_p0_tree.11.2 = 1
+b_p0_tree.12.1 = 1
+b_p0_tree.12.2 = 0
+b_p0_tree.13.1 = 0
+b_p0_tree.13.2 = 1
+b_p0_tree.14.1 = 0
+b_p0_tree.14.2 = 1
+b_p0_tree.15.1 = 1
+b_p0_tree.15.2 = 0
+b_p0_tree.16.1 = 0
+b_p0_tree.16.2 = 1
+b_p0_tree.17.1 = 0
+b_p0_tree.17.2 = 1
+b_p0_tree.18.1 = 0
+b_p0_tree.18.2 = 1
+b_p0_tree.19.1 = 0
+b_p0_tree.19.2 = 1
+b_p0_tree.2.1 = 1
+b_p0_tree.2.2 = 0
+b_p0_tree.20.1 = 0
+b_p0_tree.20.2 = 1
+b_p0_tree.21.1 = 1
+b_p0_tree.21.2 = 0
+b_p0_tree.22.1 = 0
+b_p0_tree.22.2 = 1
+b_p0_tree.23.1 = 0
+b_p0_tree.23.2 = 1
+b_p0_tree.24.1 = 0
+b_p0_tree.24.2 = 1
+b_p0_tree.25.1 = 1
+b_p0_tree.25.2 = 0
+b_p0_tree.26.1 = 0
+b_p0_tree.26.2 = 1
+b_p0_tree.27.1 = 0
+b_p0_tree.27.2 = 1
+b_p0_tree.28.1 = 0
+b_p0_tree.28.2 = 1
+b_p0_tree.29.1 = 0
+b_p0_tree.29.2 = 1
+b_p0_tree.3.1 = 1
+b_p0_tree.3.2 = 0
+b_p0_tree.4.1 = 0
+b_p0_tree.4.2 = 1
+b_p0_tree.5.1 = 1
+b_p0_tree.5.2 = 0
+b_p0_tree.6.1 = 0
+b_p0_tree.6.2 = 1
+b_p0_tree.7.1 = 0
+b_p0_tree.7.2 = 1
+b_p0_tree.8.1 = 0
+b_p0_tree.8.2 = 1
+b_p0_tree.9.1 = 0
+b_p0_tree.9.2 = 1
+b_p1_tree.0.1 = 1
+b_p1_tree.0.2 = 0
+b_p1_tree.1.1 = 1
+b_p1_tree.1.2 = 0
+b_p1_tree.12.1 = 0
+b_p1_tree.12.2 = 1
+b_p1_tree.15.1 = 0
+b_p1_tree.15.2 = 1
+b_p1_tree.17.1 = 1
+b_p1_tree.17.2 = 0
+b_p1_tree.2.1 = 1
+b_p1_tree.2.2 = 0
+b_p1_tree.21.1 = 1
+b_p1_tree.21.2 = 0
+b_p1_tree.25.1 = 0
+b_p1_tree.25.2 = 1
+b_p1_tree.3.1 = 1
+b_p1_tree.3.2 = 0
+b_p1_tree.4.1 = 1
+b_p1_tree.4.2 = 0
+b_p1_tree.5.1 = 1
+b_p1_tree.5.2 = 0
+b_p1_tree.7.1 = 1
+b_p1_tree.7.2 = 0
+b_p1_tree.8.1 = 1
+b_p1_tree.8.2 = 0
+b_p2_tree.2.1 = 0
+b_p2_tree.2.2 = 1
+b_p2_tree.21.1 = 1
+b_p2_tree.21.2 = 0
+b_p2_tree.3.1 = 1
+b_p2_tree.3.2 = 0
+b_p2_tree.5.1 = 0
+b_p2_tree.5.2 = 1
+b_p2_tree.8.1 = 1
+b_p2_tree.8.2 = 0
+b_p3_tree.21.1 = 1
+b_p3_tree.21.2 = 0
+b_p3_tree.3.1 = 1
+b_p3_tree.3.2 = 0
+b_p3_tree.8.1 = 1
+b_p3_tree.8.2 = 0
+b_p4_tree.21.1 = 1
+b_p4_tree.21.2 = 0
+b_p4_tree.3.1 = 0
+b_p4_tree.3.2 = 1
+b_p5_tree.21.1 = 0
+b_p5_tree.21.2 = 1
+pesum_0_12 = 0
+pesum_0_13 = 2
+pesum_0_9 = 1
+pesum_0_b = 1
+pesum_0_e = 1
+pesum_0_f = 1
+pesum_11_0 = 4
+pesum_11_1 = 2
+pesum_11_dd_22 = 1
+pesum_11_dd_j = 1
+pesum_11_i = 0
+pesum_12_0 = 0
+pesum_12_1 = 0
+pesum_12_b = 1
+pesum_12_c = 1
+pesum_12_i = 2
+pesum_13_8 = 1
+pesum_13_d = 2
+pesum_13_e = 1
+pesum_13_h = 4
+pesum_16_23 = 1
+pesum_16_9 = 1
+pesum_18_0 = 3
+pesum_18_22 = 0
+pesum_18_22_dd = 0
+pesum_18_28 = 0
+pesum_18_28_dd = 1
+pesum_18_d = 1
+pesum_18_k = 1
+pesum_18_m = 1
+pesum_1_12 = 0
+pesum_1_6_dd7 = 1
+pesum_1_9_dd7 = 2
+pesum_1_d = 4
+pesum_1_dd7_b = 1
+pesum_1_e = 1
+pesum_22_11 = 0
+pesum_22_12 = 1
+pesum_23_0 = 2
+pesum_23_1 = 1
+pesum_23_11 = 1
+pesum_23_16 = 1
+pesum_23_28_dd = 1
+pesum_23_j = 1
+pesum_23_m = 1
+pesum_25_0 = 2
+pesum_25_18 = 1
+pesum_28_n = 0
+pesum_2_12 = 2
+pesum_2_d = 0
+pesum_2_i = 1
+pesum_6_b = 1
+pesum_6_c = 2
+pesum_6_dd7_11_dd = 1
+pesum_6_dd7_c = 2
+pesum_6_dd7_f = 1
+pesum_8_0 = 2
+pesum_8_j = 2
+pesum_9_13 = 1
+pesum_9_dd7_0 = 1
+pesum_9_dd7_d = 1
+pesum_9_f = 0
+pesum_9_i = 1
+pesum_a_0 = 1
+pesum_a_13 = 1
+pesum_a_6 = 1
+pesum_a_9 = 2
+pesum_a_9_dd7 = 1
+pesum_a_ROOT_ = 1
+pesum_a_d = 1
+pesum_a_e = 1
+pesum_b_6_dd7 = 1
+pesum_c_9_dd7 = 1
+pesum_c_b = 2
+pesum_c_d = 6
+pesum_d_13_dd = 1
+pesum_d_b = 1
+pesum_d_c = 3
+pesum_d_e = 4
+pesum_e_13 = 0
+pesum_e_d = 4
+pesum_e_f = 6
+pesum_f_b = 1
+pesum_f_c = 1
+pesum_f_d = 1
+pesum_f_e = 4
+pesum_g_h = 4
+pesum_h_g = 1
+pesum_h_i = 1
+pesum_j_11 = 0
+pesum_j_12 = 3
+pesum_j_23 = 1
+pesum_j_23_dd = 1
+pesum_j_6 = 1
+pesum_j_k = 8
+pesum_k_16 = 2
+pesum_k_23 = 2
+pesum_k_j = 3
+pesum_k_l = 10
+pesum_l_18 = 1
+pesum_l_j = 2
+pesum_l_k = 2
+pesum_l_m = 0
+pesum_m_0 = 0
+pesum_m_1 = 1
+pesum_n_28 = 0
+pesum_n_o = 3
+pesum_o_25 = 1
+pesum_o_n = 3
+pesum_p_n = 1
+source.0_target.12_move.0_tree.5 = 0
+source.0_target.13_move.0_tree.24 = 1
+source.0_target.13_move.0_tree.8 = 1
+source.0_target.13_move.1_tree.8 = 0
+source.0_target.13_move.2_tree.8 = 0
+source.0_target.13_move.3_tree.8 = 0
+source.0_target.9_move.0_tree.6 = 1
+source.0_target.b_move.0_tree.7 = 1
+source.0_target.b_move.1_tree.7 = 0
+source.0_target.e_move.0_tree.22 = 1
+source.0_target.f_move.0_tree.27 = 1
+source.11_dd_target.22_move.0_tree.9 = 1
+source.11_dd_target.j_move.0_tree.15 = 0
+source.11_dd_target.j_move.1_tree.15 = 1
+source.11_target.0_move.0_tree.27 = 1
+source.11_target.0_move.0_tree.5 = 0
+source.11_target.0_move.0_tree.7 = 1
+source.11_target.0_move.0_tree.8 = 1
+source.11_target.0_move.1_tree.5 = 0
+source.11_target.0_move.1_tree.7 = 0
+source.11_target.0_move.2_tree.5 = 1
+source.11_target.0_move.2_tree.8 = 0
+source.11_target.1_move.0_tree.1 = 1
+source.11_target.1_move.0_tree.17 = 1
+source.11_target.i_move.0_tree.21 = 0
+source.11_target.i_move.1_tree.21 = 0
+source.11_target.i_move.3_tree.21 = 0
+source.11_target.i_move.4_tree.21 = 0
+source.12_target.0_move.1_tree.8 = 0
+source.12_target.0_move.3_tree.8 = 0
+source.12_target.1_move.1_tree.1 = 0
+source.12_target.1_move.1_tree.17 = 0
+source.12_target.b_move.0_tree.24 = 1
+source.12_target.c_move.0_tree.0 = 1
+source.12_target.c_move.1_tree.0 = 0
+source.12_target.i_move.0_tree.13 = 1
+source.12_target.i_move.2_tree.21 = 0
+source.12_target.i_move.5_tree.21 = 1
+source.13_target.8_move.0_tree.10 = 1
+source.13_target.d_move.0_tree.16 = 1
+source.13_target.d_move.0_tree.4 = 1
+source.13_target.d_move.1_tree.4 = 0
+source.13_target.e_move.0_tree.2 = 0
+source.13_target.e_move.1_tree.2 = 0
+source.13_target.e_move.2_tree.2 = 1
+source.13_target.h_move.0_tree.20 = 1
+source.13_target.h_move.0_tree.22 = 1
+source.13_target.h_move.0_tree.23 = 1
+source.13_target.h_move.0_tree.9 = 1
+source.16_target.23_move.0_tree.26 = 1
+source.16_target.9_move.0_tree.6 = 1
+source.18_target.0_move.0_tree.13 = 1
+source.18_target.0_move.0_tree.24 = 1
+source.18_target.0_move.0_tree.28 = 1
+source.18_target.22_dd_move.1_tree.3 = 0
+source.18_target.22_move.0_tree.3 = 0
+source.18_target.22_move.2_tree.3 = 0
+source.18_target.28_dd_move.4_tree.3 = 1
+source.18_target.28_move.3_tree.3 = 0
+source.18_target.d_move.0_tree.21 = 0
+source.18_target.d_move.1_tree.21 = 0
+source.18_target.d_move.2_tree.21 = 0
+source.18_target.d_move.3_tree.21 = 0
+source.18_target.d_move.4_tree.21 = 0
+source.18_target.d_move.5_tree.21 = 1
+source.18_target.k_move.0_tree.0 = 1
+source.18_target.k_move.1_tree.0 = 0
+source.18_target.m_move.0_tree.29 = 1
+source.1_dd7_target.b_move.0_tree.0 = 1
+source.1_dd7_target.b_move.1_tree.0 = 0
+source.1_target.12_move.1_tree.5 = 0
+source.1_target.6_dd7_move.0_tree.21 = 0
+source.1_target.6_dd7_move.1_tree.21 = 0
+source.1_target.6_dd7_move.2_tree.21 = 0
+source.1_target.6_dd7_move.3_tree.21 = 0
+source.1_target.6_dd7_move.4_tree.21 = 0
+source.1_target.6_dd7_move.5_tree.21 = 1
+source.1_target.9_dd7_move.0_tree.12 = 0
+source.1_target.9_dd7_move.0_tree.14 = 1
+source.1_target.9_dd7_move.1_tree.12 = 1
+source.1_target.d_move.0_tree.11 = 1
+source.1_target.d_move.0_tree.16 = 1
+source.1_target.d_move.0_tree.20 = 1
+source.1_target.d_move.0_tree.4 = 1
+source.1_target.e_move.0_tree.15 = 0
+source.1_target.e_move.1_tree.15 = 1
+source.22_target.11_move.0_tree.2 = 0
+source.22_target.12_move.0_tree.11 = 1
+source.23_target.0_move.0_tree.23 = 1
+source.23_target.0_move.0_tree.26 = 1
+source.23_target.11_move.1_tree.2 = 0
+source.23_target.11_move.2_tree.2 = 1
+source.23_target.16_move.0_tree.17 = 1
+source.23_target.16_move.1_tree.17 = 0
+source.23_target.1_move.0_tree.1 = 1
+source.23_target.1_move.1_tree.1 = 0
+source.23_target.28_dd_move.0_tree.25 = 0
+source.23_target.28_dd_move.1_tree.25 = 1
+source.23_target.j_move.0_tree.3 = 0
+source.23_target.j_move.1_tree.3 = 0
+source.23_target.j_move.2_tree.3 = 0
+source.23_target.j_move.3_tree.3 = 0
+source.23_target.j_move.4_tree.3 = 1
+source.23_target.m_move.0_tree.8 = 1
+source.23_target.m_move.1_tree.8 = 0
+source.25_target.0_move.0_tree.0 = 1
+source.25_target.0_move.0_tree.10 = 1
+source.25_target.18_move.0_tree.8 = 1
+source.25_target.18_move.1_tree.8 = 0
+source.25_target.18_move.2_tree.8 = 0
+source.25_target.18_move.3_tree.8 = 0
+source.28_target.n_move.0_tree.15 = 0
+source.28_target.n_move.0_tree.2 = 0
+source.28_target.n_move.0_tree.21 = 0
+source.28_target.n_move.1_tree.2 = 0
+source.28_target.n_move.1_tree.21 = 0
+source.28_target.n_move.2_tree.21 = 0
+source.2_target.12_move.0_tree.7 = 1
+source.2_target.12_move.1_tree.7 = 0
+source.2_target.12_move.2_tree.5 = 1
+source.2_target.d_move.1_tree.4 = 0
+source.2_target.i_move.0_tree.24 = 1
+source.6_dd7_target.11_dd_move.0_tree.19 = 1
+source.6_dd7_target.c_move.0_tree.25 = 0
+source.6_dd7_target.c_move.0_tree.3 = 0
+source.6_dd7_target.c_move.1_tree.25 = 1
+source.6_dd7_target.c_move.1_tree.3 = 0
+source.6_dd7_target.c_move.2_tree.3 = 0
+source.6_dd7_target.c_move.3_tree.3 = 0
+source.6_dd7_target.c_move.4_tree.3 = 1
+source.6_dd7_target.f_move.0_tree.10 = 1
+source.6_target.b_move.0_tree.5 = 0
+source.6_target.b_move.1_tree.5 = 0
+source.6_target.b_move.2_tree.5 = 1
+source.6_target.c_move.0_tree.1 = 1
+source.6_target.c_move.0_tree.17 = 1
+source.6_target.c_move.1_tree.1 = 0
+source.6_target.c_move.1_tree.17 = 0
+source.8_target.0_move.0_tree.22 = 1
+source.8_target.0_move.0_tree.6 = 1
+source.8_target.j_move.0_tree.13 = 1
+source.8_target.j_move.0_tree.24 = 1
+source.9_dd7_target.0_move.0_tree.13 = 1
+source.9_dd7_target.d_move.0_tree.19 = 1
+source.9_target.13_move.0_tree.7 = 1
+source.9_target.f_move.0_tree.21 = 0
+source.9_target.f_move.3_tree.21 = 0
+source.9_target.i_move.0_tree.29 = 1
+source.a_target.0_move.0_tree.3 = 0
+source.a_target.0_move.1_tree.3 = 0
+source.a_target.0_move.2_tree.3 = 0
+source.a_target.0_move.3_tree.3 = 0
+source.a_target.0_move.4_tree.3 = 1
+source.a_target.13_move.0_tree.8 = 1
+source.a_target.13_move.1_tree.8 = 0
+source.a_target.13_move.2_tree.8 = 0
+source.a_target.13_move.3_tree.8 = 0
+source.a_target.6_move.0_tree.16 = 1
+source.a_target.9_dd7_move.0_tree.12 = 0
+source.a_target.9_dd7_move.1_tree.12 = 1
+source.a_target.9_move.0_tree.14 = 1
+source.a_target.9_move.0_tree.6 = 1
+source.a_target.ROOT__move.0_tree.23 = 1
+source.a_target.d_move.0_tree.20 = 1
+source.a_target.e_move.0_tree.22 = 1
+source.b_target.6_dd7_move.0_tree.27 = 1
+source.c_target.9_dd7_move.0_tree.18 = 1
+source.c_target.b_move.0_tree.13 = 1
+source.c_target.b_move.0_tree.4 = 1
+source.c_target.b_move.1_tree.4 = 0
+source.c_target.d_move.0_tree.10 = 1
+source.c_target.d_move.0_tree.19 = 1
+source.c_target.d_move.0_tree.26 = 1
+source.c_target.d_move.0_tree.27 = 1
+source.c_target.d_move.0_tree.5 = 0
+source.c_target.d_move.0_tree.9 = 1
+source.c_target.d_move.1_tree.5 = 0
+source.c_target.d_move.2_tree.5 = 1
+source.d_target.13_dd_move.0_tree.0 = 1
+source.d_target.13_dd_move.1_tree.0 = 0
+source.d_target.b_move.0_tree.9 = 1
+source.d_target.c_move.0_tree.15 = 0
+source.d_target.c_move.0_tree.2 = 0
+source.d_target.c_move.0_tree.28 = 1
+source.d_target.c_move.1_tree.15 = 1
+source.d_target.c_move.1_tree.2 = 0
+source.d_target.c_move.2_tree.2 = 1
+source.d_target.e_move.0_tree.12 = 0
+source.d_target.e_move.0_tree.14 = 1
+source.d_target.e_move.0_tree.18 = 1
+source.d_target.e_move.0_tree.29 = 1
+source.d_target.e_move.1_tree.12 = 1
+source.e_target.13_move.1_tree.7 = 0
+source.e_target.d_move.0_tree.10 = 1
+source.e_target.d_move.0_tree.24 = 1
+source.e_target.d_move.0_tree.25 = 0
+source.e_target.d_move.0_tree.3 = 0
+source.e_target.d_move.1_tree.25 = 1
+source.e_target.d_move.1_tree.3 = 0
+source.e_target.d_move.2_tree.3 = 0
+source.e_target.d_move.3_tree.3 = 0
+source.e_target.d_move.4_tree.3 = 1
+source.e_target.f_move.0_tree.0 = 1
+source.e_target.f_move.0_tree.16 = 1
+source.e_target.f_move.0_tree.20 = 1
+source.e_target.f_move.0_tree.23 = 1
+source.e_target.f_move.0_tree.4 = 1
+source.e_target.f_move.1_tree.0 = 0
+source.e_target.f_move.1_tree.21 = 0
+source.e_target.f_move.1_tree.4 = 0
+source.e_target.f_move.2_tree.21 = 0
+source.e_target.f_move.4_tree.21 = 0
+source.e_target.f_move.5_tree.21 = 1
+source.f_target.b_move.0_tree.5 = 0
+source.f_target.b_move.1_tree.5 = 0
+source.f_target.b_move.2_tree.5 = 1
+source.f_target.c_move.0_tree.1 = 1
+source.f_target.c_move.1_tree.1 = 0
+source.f_target.d_move.0_tree.25 = 0
+source.f_target.d_move.1_tree.25 = 1
+source.f_target.e_move.0_tree.12 = 0
+source.f_target.e_move.0_tree.13 = 1
+source.f_target.e_move.0_tree.19 = 1
+source.f_target.e_move.0_tree.28 = 1
+source.f_target.e_move.1_tree.12 = 1
+source.g_target.h_move.0_tree.15 = 0
+source.g_target.h_move.0_tree.18 = 1
+source.g_target.h_move.0_tree.26 = 1
+source.g_target.h_move.0_tree.6 = 1
+source.g_target.h_move.1_tree.15 = 1
+source.h_target.g_move.0_tree.14 = 1
+source.h_target.i_move.0_tree.15 = 0
+source.h_target.i_move.1_tree.15 = 1
+source.j_target.11_move.0_tree.12 = 0
+source.j_target.11_move.0_tree.25 = 0
+source.j_target.12_move.0_tree.19 = 1
+source.j_target.12_move.1_tree.12 = 1
+source.j_target.12_move.1_tree.25 = 1
+source.j_target.23_dd_move.0_tree.17 = 1
+source.j_target.23_dd_move.1_tree.17 = 0
+source.j_target.23_move.0_tree.22 = 1
+source.j_target.6_move.0_tree.20 = 1
+source.j_target.k_move.0_tree.1 = 1
+source.j_target.k_move.0_tree.10 = 1
+source.j_target.k_move.0_tree.11 = 1
+source.j_target.k_move.0_tree.16 = 1
+source.j_target.k_move.0_tree.18 = 1
+source.j_target.k_move.0_tree.27 = 1
+source.j_target.k_move.0_tree.7 = 1
+source.j_target.k_move.0_tree.9 = 1
+source.j_target.k_move.1_tree.1 = 0
+source.j_target.k_move.1_tree.7 = 0
+source.k_target.16_move.0_tree.1 = 1
+source.k_target.16_move.0_tree.11 = 1
+source.k_target.16_move.1_tree.1 = 0
+source.k_target.23_move.0_tree.25 = 0
+source.k_target.23_move.0_tree.3 = 0
+source.k_target.23_move.1_tree.25 = 1
+source.k_target.23_move.1_tree.3 = 0
+source.k_target.23_move.2_tree.3 = 0
+source.k_target.23_move.3_tree.3 = 0
+source.k_target.23_move.4_tree.3 = 1
+source.k_target.j_move.0_tree.29 = 1
+source.k_target.j_move.0_tree.4 = 1
+source.k_target.j_move.0_tree.8 = 1
+source.k_target.j_move.1_tree.4 = 0
+source.k_target.j_move.1_tree.8 = 0
+source.k_target.j_move.2_tree.8 = 0
+source.k_target.j_move.3_tree.8 = 0
+source.k_target.l_move.0_tree.12 = 0
+source.k_target.l_move.0_tree.14 = 1
+source.k_target.l_move.0_tree.17 = 1
+source.k_target.l_move.0_tree.18 = 1
+source.k_target.l_move.0_tree.21 = 0
+source.k_target.l_move.0_tree.22 = 1
+source.k_target.l_move.0_tree.23 = 1
+source.k_target.l_move.0_tree.26 = 1
+source.k_target.l_move.0_tree.28 = 1
+source.k_target.l_move.0_tree.6 = 1
+source.k_target.l_move.1_tree.12 = 1
+source.k_target.l_move.1_tree.17 = 0
+source.k_target.l_move.1_tree.21 = 0
+source.k_target.l_move.2_tree.21 = 0
+source.k_target.l_move.3_tree.21 = 0
+source.k_target.l_move.4_tree.21 = 0
+source.k_target.l_move.5_tree.21 = 1
+source.l_target.18_move.0_tree.4 = 1
+source.l_target.18_move.1_tree.4 = 0
+source.l_target.j_move.0_tree.28 = 1
+source.l_target.j_move.0_tree.29 = 1
+source.l_target.k_move.0_tree.15 = 0
+source.l_target.k_move.0_tree.9 = 1
+source.l_target.k_move.1_tree.15 = 1
+source.l_target.m_move.2_tree.8 = 0
+source.l_target.m_move.3_tree.8 = 0
+source.m_target.0_move.1_tree.0 = 0
+source.m_target.1_move.0_tree.29 = 1
+source.n_target.28_move.0_tree.3 = 0
+source.n_target.28_move.1_tree.3 = 0
+source.n_target.o_move.0_tree.11 = 1
+source.n_target.o_move.0_tree.25 = 0
+source.n_target.o_move.1_tree.25 = 1
+source.n_target.o_move.2_tree.3 = 0
+source.n_target.o_move.3_tree.3 = 0
+source.n_target.o_move.4_tree.3 = 1
+source.o_target.25_move.0_tree.12 = 0
+source.o_target.25_move.1_tree.12 = 1
+source.o_target.n_move.1_tree.15 = 1
+source.o_target.n_move.2_tree.2 = 1
+source.o_target.n_move.3_tree.21 = 0
+source.o_target.n_move.4_tree.21 = 0
+source.o_target.n_move.5_tree.21 = 1
+source.p_target.n_move.0_tree.2 = 0
+source.p_target.n_move.1_tree.2 = 0
+source.p_target.n_move.2_tree.2 = 1
+u_0_12 = 1
+u_0_13 = 0
+u_0_9 = 0
+u_0_b = 0
+u_0_e = 0
+u_0_f = 0
+u_11_0 = 0
+u_11_1 = 0
+u_11_dd_22 = 0
+u_11_dd_j = 0
+u_11_i = 1
+u_12_0 = 1
+u_12_1 = 1
+u_12_b = 0
+u_12_c = 0
+u_12_i = 0
+u_13_8 = 0
+u_13_d = 0
+u_13_e = 0
+u_13_h = 0
+u_16_23 = 0
+u_16_9 = 0
+u_18_0 = 0
+u_18_22 = 1
+u_18_22_dd = 1
+u_18_28 = 1
+u_18_28_dd = 0
+u_18_d = 0
+u_18_k = 0
+u_18_m = 0
+u_1_12 = 1
+u_1_6_dd7 = 0
+u_1_9_dd7 = 0
+u_1_d = 0
+u_1_dd7_b = 0
+u_1_e = 0
+u_22_11 = 1
+u_22_12 = 0
+u_23_0 = 0
+u_23_1 = 0
+u_23_11 = 0
+u_23_16 = 0
+u_23_28_dd = 0
+u_23_j = 0
+u_23_m = 0
+u_25_0 = 0
+u_25_18 = 0
+u_28_n = 1
+u_2_12 = 0
+u_2_d = 1
+u_2_i = 0
+u_6_b = 0
+u_6_c = 0
+u_6_dd7_11_dd = 0
+u_6_dd7_c = 0
+u_6_dd7_f = 0
+u_8_0 = 0
+u_8_j = 0
+u_9_13 = 0
+u_9_dd7_0 = 0
+u_9_dd7_d = 0
+u_9_f = 1
+u_9_i = 0
+u_a_0 = 0
+u_a_13 = 0
+u_a_6 = 0
+u_a_9 = 0
+u_a_9_dd7 = 0
+u_a_ROOT_ = 0
+u_a_d = 0
+u_a_e = 0
+u_b_6_dd7 = 0
+u_c_9_dd7 = 0
+u_c_b = 0
+u_c_d = 0
+u_d_13_dd = 0
+u_d_b = 0
+u_d_c = 0
+u_d_e = 0
+u_e_13 = 1
+u_e_d = 0
+u_e_f = 0
+u_f_b = 0
+u_f_c = 0
+u_f_d = 0
+u_f_e = 0
+u_g_h = 0
+u_h_g = 0
+u_h_i = 0
+u_j_11 = 1
+u_j_12 = 0
+u_j_23 = 0
+u_j_23_dd = 0
+u_j_6 = 0
+u_j_k = 0
+u_k_16 = 0
+u_k_23 = 0
+u_k_j = 0
+u_k_l = 0
+u_l_18 = 0
+u_l_j = 0
+u_l_k = 0
+u_l_m = 1
+u_m_0 = 1
+u_m_1 = 0
+u_n_28 = 1
+u_n_o = 0
+u_o_25 = 0
+u_o_n = 0
+u_p_n = 0
+z_p0_tree.0 = 6
+z_p0_tree.1 = 6
+z_p0_tree.10 = 6
+z_p0_tree.11 = 5
+z_p0_tree.12 = 0
+z_p0_tree.13 = 6
+z_p0_tree.14 = 5
+z_p0_tree.15 = 0
+z_p0_tree.16 = 5
+z_p0_tree.17 = 5
+z_p0_tree.18 = 5
+z_p0_tree.19 = 5
+z_p0_tree.2 = 0
+z_p0_tree.20 = 5
+z_p0_tree.21 = 0
+z_p0_tree.22 = 6
+z_p0_tree.23 = 5
+z_p0_tree.24 = 6
+z_p0_tree.25 = 0
+z_p0_tree.26 = 5
+z_p0_tree.27 = 5
+z_p0_tree.28 = 5
+z_p0_tree.29 = 6
+z_p0_tree.3 = 0
+z_p0_tree.4 = 6
+z_p0_tree.5 = 0
+z_p0_tree.6 = 6
+z_p0_tree.7 = 5
+z_p0_tree.8 = 6
+z_p0_tree.9 = 6
+z_p1_tree.0 = 0
+z_p1_tree.1 = 0
+z_p1_tree.12 = 7
+z_p1_tree.15 = 7
+z_p1_tree.17 = 0
+z_p1_tree.2 = 0
+z_p1_tree.21 = 0
+z_p1_tree.25 = 7
+z_p1_tree.3 = 0
+z_p1_tree.4 = 0
+z_p1_tree.5 = 0
+z_p1_tree.7 = 0
+z_p1_tree.8 = 0
+z_p2_tree.2 = 5
+z_p2_tree.21 = 0
+z_p2_tree.3 = 0
+z_p2_tree.5 = 5
+z_p2_tree.8 = 0
+z_p3_tree.21 = 0
+z_p3_tree.3 = 0
+z_p3_tree.8 = 0
+z_p4_tree.21 = 0
+z_p4_tree.3 = 7
+z_p5_tree.21 = 6
+[13/Apr/2023 11:30:27] "GET /api/ HTTP/1.1" 200 3725126
+/home/jax/files/code/topt/topt/views.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+April 13, 2023 - 11:47:24
+Django version 4.2, using settings 'topt.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+((ace,((((act,add),ado),(age,aid)),((aim,air),ale))),(((((((all,(amp,((and,(ant,any)),ape))),apt),(arc,((are,ark),arm))),(((art,(ash,((ask,ass),ate))),awe),((((axe,(aye,bad)),bag),(bam,((ban,(bar,(bat,bay))),((bed,bee),(beg,bet))))),bib))),(bid,(big,(bin,bit)))),(((boa,((bob,bog),((boo,(bot,box)),(boy,((bra,bub),bud))))),((bug,bum),((bun,bus),((but,(buy,bye)),(cab,(cad,cam)))))),((((can,cap),(car,((cat,(caw,cob)),cod))),((cog,col),(((con,cop),cot),cow))),(((coy,cry),(cub,cue)),cup)))),(((cut,dad),((dam,dan),((dap,(((day,den),des),dew)),(did,(dig,dim))))),(din,((dip,doc),(dog,(don,dot)))))));
+
+
+/home/jax/files/code/topt/topt/topt/ilp.py changed, reloading.
+Performing system checks...
+
+Watching for file changes with StatReloader
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+April 13, 2023 - 11:48:40
+Django version 4.2, using settings 'topt.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+/home/jax/files/code/topt/topt/views.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+April 13, 2023 - 12:32:00
+Django version 4.2, using settings 'topt.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+
+Process finished with exit code 0
+'T1: (f,(e,(c,b)))
+T2: ((f,e),(c,b))
+
+(f,(e,(c,b)))
+f : e
+((e,f),(c,b))
+'
+
+["ace", "act", "add", "ado", "age", "aid", "aim", "air", "ale", "all", "amp", "and", "ant", "any", "ape", "apt", "arc", "are", "ark", "arm", "art", "ash", "ask", "ass", "ate", "awe", "axe", "aye", "bad", "bag", "bam", "ban", "bar", "bat", "bay", "bed", "bee", "beg", "bet", "bib", "bid", "big", "bin", "bit", "boa", "bob", "bog", "boo", "bot", "box", "boy", "bra", "bub", "bud", "bug", "bum", "bun", "bus", "but", "buy", "bye", "cab", "cad", "cam", "can", "cap", "car", "cat", "caw", "cob", "cod", "cog", "col", "con", "cop", "cot", "cow", "coy", "cry", "cub", "cue", "cup", "cut", "dad", "dam", "dan", "dap", "day", "den", "des", "dew", "did", "dig", "dim", "din", "dip", "doc", "dog", "don", "dot", "dry", "dub", "dud", "due", "dug", "duh", "dye", "ear", "eat", "ebb", "eel", "egg", "ego", "eke", "elf", "elk", "ell", "elm", "end", "eon", "era", "ere", "erg", "ern", "err", "eta", "eve", "ewe", "eye", "fad", "fag", "fan", "far", "fas", "fat", "fax", "fed", "fee", "fen", "few", "fib", "fig", "fin", "fir", "fit", "fix", "flu", "fly", "fob", "foe", "fog", "for", "fox", "fry", "fum", "fun", "fur", "gab", "gad", "gag", "gap", "gas", "gay", "gee", "gel", "gem", "get", "gig", "gin", "god", "goo", "got", "gum", "gun", "gut", "guy", "gym", "had", "hag", "hah", "ham", "has", "hat", "hay", "hem", "hen", "her", "hew", "hex", "hey", "hid", "him", "hip", "his", "hit", "hob", "hoc", "hog", "hop", "hot", "how", "hub", "hue", "hug", "hum", "hut", "ice", "icy", "ill", "imp", "ink", "inn", "ion", "ire", "irk", "its", "ivy", "jab", "jag", "jam", "jar", "jaw", "jay", "jet", "jig", "job", "jog", "jot", "joy", "jug", "jut", "keg", "ken", "key", "kid", "kin", "kip", "kit", "lab", "lad", "lag", "lam", "lap", "law", "lax", "lay", "lea", "led", "lee", "leg", "let", "lid", "lie", "lip", "lit", "lob", "log", "loo", "lop", "lot", "low", "lox", "lug", "lum", "lux", "lye", "mac", "mad", "maf", "mag", "man", "map", "mar", "mat", "maw", "max", "may", "men", "met", "mew", "mid", "mil", "min", "mit", "mix", "mob", "mod", "mom", "moo", "mop", "mow", "mud", "mug", "mum", "nab", "nag", "nap", "nay", "nee", "net", "new", "nib", "nil", "nip", "nit", "nix", "nob", "nod", "non", "nor", "not", "now", "nun", "nus", "nut", "oak", "oar", "oat", "odd", "off", "oft", "ohm", "oil", "old", "ole", "one", "ooh", "opt", "orb", "ore", "our", "out", "ova", "owl", "own", "pad", "pal", "pan", "pap", "par", "pat", "paw", "pay", "pea", "peg", "pen", "pep", "per", "pet", "pew", "phi", "pic", "pie", "pig", "pin", "pip", "pit", "ply", "pod", "pop", "pot", "pow", "pro", "pry", "pub", "pug", "pun", "pup", "pus", "put", "qua", "rad", "rag", "ram", "ran", "rap", "rat", "raw", "ray", "red", "ref", "rem", "rep", "ret", "rib", "rid", "rig", "rim", "rip", "rob", "rod", "roe", "rot", "row", "rub", "rue", "rug", "rum", "run", "rut", "rye","sea", "see", "set", "sew", "sex", "she", "shy", "sib", "sic", "sim", "sin", "sip", "sir", "sis", "sit", "six", "ski", "sky", "sly", "sob", "sod", "sol", "son", "sop", "sot", "sow", "soy", "spa", "spy", "sub", "sue", "sum", "sun", "sup", "tab", "tad", "tag", "tan", "tap", "tar", "tat", "tau", "tax", "tea", "ted", "tee", "ten", "the", "tho", "thy", "tic", "tie", "til", "tin", "tip", "tis", "tit", "toe", "tog", "tom", "ton", "too", "top", "tor", "tot", "tow", "toy", "try", "tub", "tug", "tum", "tun", "tup", "tut", "tux", "twa", "two", "tye", "ugh", "ump", "uns", "upo", "ups", "urn", "use", "uta", "ute", "uts", "vac", "van", "vat", "vaw", "vee", "vet", "vex", "via", "vie", "vim", "vow", "vox", "wad", "wag", "wan", "wap", "war", "was", "wax", "way", "web", "wed", "wee", "wen", "wet", "wha", "who", "why", "wig", "win", "wit", "wiz", "woe", "wok", "won", "woo", "wow", "wry", "wud", "wye", "wyn", "xis", "yah", "yak", "yam", "yap", "yar", "yaw", "yay", "yea", "yen", "yep", "yes", "yet", "yew", "yid", "yin", "yip", "yod", "yok", "yom", "yon", "you", "yow", "yuk", "yum", "yup", "zag", "zap", "zed", "zee", "zek", "zig", "zin", "zip", "zit", "zoo"]
